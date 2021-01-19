@@ -17,6 +17,13 @@ describe('performer ', () => {
             .not
             .toThrow();
     });
+
+    it('throws an error correctly', async () => {
+        expect.assertions(1);
+        await expect(performerService.create())
+            .rejects
+            .toEqual(new Error('Missing performer'));
+    })
 });
 
 describe('tester ', () => {
