@@ -31,4 +31,17 @@ describe('Users', () => {
     const duplicateUser = await createValidUser();
     expect(duplicateUser.status).toEqual(400);
   });
+
+  it('returns a server error if something goes wrong during the creation process', async () => {
+    const oldSecret = process.env.JWT_SECRET;
+    const oldConsole = console.error;
+    console.error = jest.fn();
+    process.env.JWT_SECRET = '';
+
+    let createUser = await createValidUser();
+    expect(createUser.status).toEqual(500);
+
+    process.env.JWT_SECRET = oldSecret;
+    console.error = oldConsole;
+  });
 });
