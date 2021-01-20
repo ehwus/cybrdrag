@@ -32,4 +32,26 @@ describe('Users', () => {
 
     expect(createUser.body.token).not.toBe(null);
   });
+
+  it('Returns a 400 status if trying to create user that exists', async () => {
+    await request
+      .post('/api/users')
+      .send({
+        username: 'kenneth',
+        email: 'kenneth@biz.com',
+        password: 'partario',
+      })
+      .set('Accept', 'application/json');
+
+    const createUser = await request
+      .post('/api/users')
+      .send({
+        username: 'kenneth',
+        email: 'kenneth@biz.com',
+        password: 'partario',
+      })
+      .set('Accept', 'application/json');
+
+    expect(createUser.status).toEqual(400);
+  });
 });
