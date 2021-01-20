@@ -3,6 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
 const { check, validationResult } = require('express-validator');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 // @route   POST api/users
 // @desc    Register a user
@@ -30,7 +32,9 @@ router.post(
     try {
       let user = await User.findOne({ email });
       if (user) {
-        res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'User already exists' }] });
       }
 
       user = new User({
@@ -43,13 +47,26 @@ router.post(
       user.password = await bcrypt.hash(password, salt);
 
       await user.save();
-      res.send('User registered');
+
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
+
+      jwt.sign(
+        payload,
+        process.env.JWT_SECRET,
+        { expiresIn: 3600 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
     }
-
-    // See if user exists
   }
 );
 
