@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "server": "nodemon server",
     "start": "node server"
   },
@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/ehwus/cybrdrag#readme",
   "devDependencies": {
-    "jest": "^26.6.3"
+    "jest": "^26.6.3",
+    "supertest": "^6.1.1"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
