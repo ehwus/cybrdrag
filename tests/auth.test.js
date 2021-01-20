@@ -48,7 +48,7 @@ describe('Auth', () => {
     expect(error).toContain('Invalid Credentials')
   })
 
-  it('returns a server error if something goes wrong during the creation process', async () => {
+  it('returns a server error if something goes wrong during the login process', async () => {
     const oldSecret = process.env.JWT_SECRET;
     const oldConsole = console.error;
     console.error = jest.fn();
@@ -65,5 +65,17 @@ describe('Auth', () => {
     process.env.JWT_SECRET = oldSecret;
     console.error = oldConsole;
   });
+  
+  it('Returns a user object correctly after successful login', async () => {
+    await createValidUser();
+    let successfulLogin = await request.post('/api/auth').send({
+      email: 'kenneth@biz.com',
+      password: 'partario',
+    }).set('Accept', 'application/json');
 
+    let returnedUser = await request.get('/api/auth')
+                                    .set('x-auth-token', successfulLogin.body.token)
+    expect(returnedUser.body.username).toEqual('kenneth')
+    expect(returnedUser.body.email).toEqual('kenneth@biz.com')
+  })
 });
