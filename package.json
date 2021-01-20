@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
-    "server": "nodemon server",
-    "start": "node server"
+    "test": "jest --coverage --detectOpenHandles",
+    "server": "nodemon app",
+    "start": "node app"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/ehwus/cybrdrag#readme",
   "devDependencies": {
     "jest": "^26.6.3",
+    "mongodb-memory-server": "^6.9.3",
     "supertest": "^6.1.1"
   },
   "dependencies": {
@@ -30,5 +31,8 @@
     "express-validator": "^6.9.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.12"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
