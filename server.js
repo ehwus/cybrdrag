@@ -22,3 +22,5 @@ app.get('/', (req, res) => {
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/performers', require('./routes/api/performers'));
 app.use('/api/auth', require('./routes/api/auth'));
+
+module.exports = app;
