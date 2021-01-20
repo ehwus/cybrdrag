@@ -5,6 +5,7 @@ const request = supertest(app);
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const dbHandler = require('./db-handler');
+const createValidUser = require('./test-helpers').createValidUser;
 
 beforeAll(async () => await dbHandler.connect());
 afterEach(async () => await dbHandler.clearDatabase());
@@ -21,37 +22,13 @@ describe('Users', () => {
   });
 
   it('Returns a JSON token on successful sign up', async () => {
-    const createUser = await request
-      .post('/api/users')
-      .send({
-        username: 'kenneth',
-        email: 'kenneth@biz.com',
-        password: 'partario',
-      })
-      .set('Accept', 'application/json');
-
+    const createUser = await createValidUser();
     expect(createUser.body.token).not.toBe(null);
   });
 
   it('Returns a 400 status if trying to create user that exists', async () => {
-    await request
-      .post('/api/users')
-      .send({
-        username: 'kenneth',
-        email: 'kenneth@biz.com',
-        password: 'partario',
-      })
-      .set('Accept', 'application/json');
-
-    const createUser = await request
-      .post('/api/users')
-      .send({
-        username: 'kenneth',
-        email: 'kenneth@biz.com',
-        password: 'partario',
-      })
-      .set('Accept', 'application/json');
-
-    expect(createUser.status).toEqual(400);
+    const createUser = await createValidUser();
+    const duplicateUser = await createValidUser();
+    expect(duplicateUser.status).toEqual(400);
   });
 });
