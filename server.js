@@ -15,3 +15,8 @@ app.listen(PORT, () => {
 app.get('/', (req, res) => {
   res.send('API running');
 });
+
+// Define routes
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/performers', require('./routes/api/performers'));
+app.use('/api/auth', require('./routes/api/auth'));
