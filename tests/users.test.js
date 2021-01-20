@@ -16,9 +16,9 @@ describe('Users', () => {
     const createUser = await request.post('/api/users');
     let errors = createUser.body.errors.map((e) => e.msg);
     expect(errors.length).toEqual(3);
-    expect(errors[0]).toEqual('Usernames must be between 5 and 30 characters');
-    expect(errors[1]).toEqual('Please include a valid email');
-    expect(errors[2]).toEqual('Password must be at least 5 characters long');
+    expect(errors).toContain('Usernames must be between 5 and 30 characters');
+    expect(errors).toContain('Please include a valid email');
+    expect(errors).toContain('Password must be at least 5 characters long');
   });
 
   it('Returns a JSON token on successful sign up', async () => {
