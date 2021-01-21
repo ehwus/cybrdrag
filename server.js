@@ -4,10 +4,6 @@ const app = express();
 
 app.use(express.json({ extended: false }));
 
-app.get('/', (req, res) => {
-  res.send('API running');
-});
-
 // Define routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/performers', require('./routes/api/performers'));
