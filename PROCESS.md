@@ -12,3 +12,6 @@
 
 #### Designing Portfolio Layout
 ![2021-01-21 12 14 30](https://user-images.githubusercontent.com/59441094/105349955-58791980-5be2-11eb-9f87-4648565d282c.gif)
+
+#### We decided to change the newsfeed layout
+![2021-01-21 12 18 11](https://user-images.githubusercontent.com/59441094/105350275-cde4ea00-5be2-11eb-854d-16d60a7e7cee.gif)
