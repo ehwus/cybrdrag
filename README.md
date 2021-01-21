@@ -32,12 +32,11 @@ npm run server
 npm test
 ```
 
-## Process
-![2021-01-21 11 14 31](https://user-images.githubusercontent.com/59441094/105345393-1ea51480-5bdc-11eb-8d1f-1f971fcb8ee0.gif)
+## Blog
+We kept a record of our progress through the final project [HERE](https://github.com/ehwus/cybrdrag/blob/master/BLOG).
 
-
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/59441094/105345839-a7bc4b80-5bdc-11eb-8a8f-ea099e469f5d.gif)
-
+## Design Process
+We catalogued the visual design process [HERE](https://github.com/ehwus/cybrdrag/blob/master/PROCESS).
 
 ## Authors
 
