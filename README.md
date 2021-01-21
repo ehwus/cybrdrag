@@ -48,6 +48,8 @@ We kept a record of our progress through the final project [HERE](https://github
 ## Design Process
 We catalogued the visual design process [HERE](https://github.com/ehwus/cybrdrag/blob/master/PROCESS).
 
+We have a miro board for planning events and performer characteristics [HERE](https://miro.com/app/board/o9J_lXvngBA=/).
+
 ## Authors
 
 [![](https://github.com/alexleesonmill.png?size=50)](https://github.com/alexleesonmill) - Alex Leeson-Mill<br>
