@@ -62,17 +62,8 @@ We have a miro board for planning events and performer characteristics [HERE](ht
 
 [![GitHub contributors](https://img.shields.io/github/contributors/ehwus/cybrdrag.svg)](https://GitHub.com/ehwus/cybrdrag/graphs/contributors/)
 
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
 ## 📝 License
 
 This project is [MIT](https://github.com/ehwus/cybrdrag/blob/master/LICENSE) licensed.
 
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
-
-[contributors-shield]: https://img.shields.io/github/contributors/ehwus/cybrdrag.svg?style=for-the-badge
 
