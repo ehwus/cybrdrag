@@ -43,10 +43,10 @@ npm test
 ```
 
 ## Blog
-We kept a record of our progress through the final project [HERE](https://github.com/ehwus/cybrdrag/blob/master/BLOG).
+We kept a record of our progress through the final project [HERE](https://github.com/ehwus/cybrdrag/blob/master/BLOG.md).
 
 ## Design Process
-We catalogued the visual design process [HERE](https://github.com/ehwus/cybrdrag/blob/master/PROCESS).
+We catalogued the visual design process [HERE](https://github.com/ehwus/cybrdrag/blob/master/PROCESS.md).
 
 We have a miro board for planning events and performer characteristics [HERE](https://miro.com/app/board/o9J_lXvngBA=/).
 
