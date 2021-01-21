@@ -1,14 +1,24 @@
 <h1 align="center">Welcome to cybrdrag 👋</h1>
-<p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+<p align="center">
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge&cacheSeconds=2592000" />
   <a href="https://github.com/ehwus/cybrdrag#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg?style=for-the-badge" />
   </a>
   <a href="https://github.com/ehwus/cybrdrag/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge" />
   </a>
-  <a href="https://github.com/ehwus/cybrdrag/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/ehwus/cybrdrag" />
+  <a href="https://github.com/ehwus/cybrdrag/graphs/commit-activity">
+    <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/y/ehwus/cybrdrag?style=for-the-badge">
+  </a>
+  <a href="https://github.com/ehwus/cybrdrag/commits/main">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/ehwus/cybrdrag?style=for-the-badge">
+  </a>
+
+  <a href="https://github.com/ehwus/cybrdrag/graphs/contributors">
+    <img alt="Collaborators" src="https://img.shields.io/github/contributors/ehwus/cybrdrag?style=for-the-badge" />
+  </a>
+  <a href="https://www.npmjs.com/">
+    <img alt="npm" src="https://img.shields.io/npm/v/npm?style=for-the-badge">
   </a>
 </p>
 
@@ -61,3 +71,6 @@ This project is [MIT](https://github.com/ehwus/cybrdrag/blob/master/LICENSE) lic
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+
+[contributors-shield]: https://img.shields.io/github/contributors/ehwus/cybrdrag.svg?style=for-the-badge
+
