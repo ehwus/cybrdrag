@@ -15,3 +15,9 @@
 
 #### We decided to change the newsfeed layout
 ![2021-01-21 12 18 11](https://user-images.githubusercontent.com/59441094/105350275-cde4ea00-5be2-11eb-854d-16d60a7e7cee.gif)
+
+#### Adding queue to next performance
+![2021-01-21 12 21 12](https://user-images.githubusercontent.com/59441094/105350554-43e95100-5be3-11eb-9fa1-8324dc077705.gif)
+
+#### Discussion on agreement regarding final view
+![2021-01-21 12 23 19](https://user-images.githubusercontent.com/59441094/105350748-86ab2900-5be3-11eb-9658-33cc3e58b89e.gif)
