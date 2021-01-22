@@ -1,38 +1,53 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'Tarrget Chrome Italic';
+  src: url('./fonts/tarrgetchromeital.ttf') format('truetype'); /* Safari, Android, iOS */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'Tarrget Condensed';
+  src: url('./fonts/tarrgetcond.ttf') format('truetype'); /* Safari, Android, iOS */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background-image: url('./images/background.png');
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.logo {
+  font-family: 'Tarrget Chrome Italic';
+  font-size: 70px;
+  float: left;
+  padding: 0;
+  margin-top: 5px;
+  margin-left: 10px;
+  color: #defe47;
+}
+
+nav {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.logo i {
+  margin-right: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.authbuttons {
+  margin-top: 20px;
+}
+
+.authbuttons button {
+  background: #7700a6;
+  border-radius: 11px;
+  padding: 10px 15px 10px 15px;
+  font-family: 'Tarrget Condensed';
+  font-size: 40px;
+  color: #defe47;
+  border: none;
+  margin-right: 10px;
+}
+
+.authbuttons button:hover {
+  opacity: 80%;
+  cursor: pointer;
+  border: 1px solid #defe47;
 }
