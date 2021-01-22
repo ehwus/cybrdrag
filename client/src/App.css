@@ -18,7 +18,7 @@ body {
   float: left;
   padding: 0;
   margin-top: 5px;
-  margin-left: 10px;
+  margin-left: 15px;
   color: #defe47;
 }
 
@@ -31,11 +31,16 @@ nav {
   margin-right: 10px;
 }
 
+.navButtons {
+  margin-top: 15px;
+  margin-right: 5px;
+}
+
 .authbuttons {
   margin-top: 20px;
 }
 
-.authbuttons button {
+.purpleButton {
   background: #7700a6;
   border-radius: 11px;
   padding: 10px 15px 10px 15px;
@@ -46,8 +51,38 @@ nav {
   margin-right: 10px;
 }
 
-.authbuttons button:hover {
+.purpleButton:hover {
   opacity: 80%;
   cursor: pointer;
   border: 1px solid #defe47;
+}
+
+.container {
+  text-align: center;
+}
+
+.container i {
+  position: relative;
+  left: 50px;
+  font-size: 30px;
+  top: 4px;
+}
+
+.formInput {
+  font-family: 'Tarrget Condensed';
+  font-size: 25px;
+  background: #defe47;
+  border-radius: 20.5px;
+  border: none;
+  width: 684px;
+  height: 50px;
+  margin-bottom: 30px;
+  padding-left: 55px;
+  outline: none;
+}
+
+.authstate {
+  font-family: 'Tarrget Condensed';
+  font-size: 60px;
+  color: #defe47;
 }
