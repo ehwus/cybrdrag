@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage --detectOpenHandles",
+    "test": "jest --coverage",
     "server": "nodemon app",
     "start": "node app",
     "client": "npm start --prefix client",
