@@ -13,15 +13,4 @@ async function createValidUser() {
     .set('Accept', 'application/json');
 }
 
-async function createValidPerformer() {
-  return await request
-    .post('/api/performers')
-    .send({
-      name: 'Madame Thiccsaud',
-      performancehistory: [{ netearned: 0 }]
-    })
-    .set('Accept', 'application/json')
-}
-
-
-module.exports = { createValidUser, createValidPerformer };
+module.exports = { createValidUser };

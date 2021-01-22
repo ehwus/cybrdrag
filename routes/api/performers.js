@@ -7,17 +7,22 @@ const Performer = require('../../models/Performer');
 // @route   GET api/performers
 // @desc    Get all performers
 // @access  Public
-router.get('/', (req, res) => {
-  res.send('Performers route is working');
+router.get('/', async(req, res) => {
+  try {
+    const performers = await Performer.find(req.performers);
+    res.json(performers);
+  } catch (err) {
+    console.error(err.message)
+  }
 });
 
 // @route GET api/performers/id
 // @desc Get individual performer object by id
 // @access Public
 
-router.get('/id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const performer = await Performer.findById(req)
+    const performer = await Performer.findById(req.params.id)
     res.json(performer)
   } catch (err) {
     console.error(err.message)
