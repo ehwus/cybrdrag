@@ -1,15 +1,22 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
- <nav>
-   <header style={{float: "left"}}>cybrdrag</header>
-   <div class="login" style={{float: "right"}}>
-     <button>login</button>
-     <button>Sign Up</button>
-   </div>
- </nav>
-  )
-}
+    <nav>
+      <h1 className='logo'>
+        <i className='fas fa-dice-d20'></i>CYBRDRAG
+      </h1>
+      <div className='navButtons'>
+        <Link to='/login'>
+          <button className='purpleButton'>Login</button>
+        </Link>
+        <Link to='/register'>
+          <button className='purpleButton'>Register</button>
+        </Link>
+      </div>
+    </nav>
+  );
+};
 
-export default Navbar;  
+export default Navbar;

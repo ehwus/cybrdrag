@@ -1,38 +1,88 @@
-.App {
+@font-face {
+  font-family: 'Tarrget Chrome Italic';
+  src: url('./fonts/tarrgetchromeital.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Tarrget Condensed';
+  src: url('./fonts/tarrgetcond.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+body {
+  background-image: url('./images/background.png');
+}
+
+.logo {
+  font-family: 'Tarrget Chrome Italic';
+  font-size: 70px;
+  float: left;
+  padding: 0;
+  margin-top: 5px;
+  margin-left: 15px;
+  color: #defe47;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo i {
+  margin-right: 10px;
+}
+
+.navButtons {
+  margin-top: 15px;
+  margin-right: 5px;
+}
+
+.authbuttons {
+  margin-top: 20px;
+}
+
+.purpleButton {
+  background: #7700a6;
+  border-radius: 11px;
+  padding: 10px 15px 10px 15px;
+  font-family: 'Tarrget Condensed';
+  font-size: 40px;
+  color: #defe47;
+  border: none;
+  margin-right: 10px;
+}
+
+.purpleButton:hover {
+  opacity: 80%;
+  cursor: pointer;
+  border: 1px solid #defe47;
+}
+
+.container {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container i {
+  position: relative;
+  left: 50px;
+  font-size: 30px;
+  top: 4px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.formInput {
+  font-family: 'Tarrget Condensed';
+  font-size: 25px;
+  background: #defe47;
+  border-radius: 20.5px;
+  border: none;
+  width: 684px;
+  height: 50px;
+  margin-bottom: 30px;
+  padding-left: 55px;
+  outline: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.authstate {
+  font-family: 'Tarrget Condensed';
+  font-size: 60px;
+  color: #defe47;
 }
