@@ -91,7 +91,7 @@ describe('Performers', () => {
         `/api/performers/${savedPerformer.id}`
       );
       expect(profileQuery.status).toEqual(200);
-      expect(profileQuery.body.name).toEqual('Madame Thiccsaud');
+      expect(profileQuery.body._id).toEqual(savedPerformer.id);
     });
 
     it('Returns an error if there is a database failure', async () => {

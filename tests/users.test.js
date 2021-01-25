@@ -1,5 +1,6 @@
 const app = require('../server');
 const User = require('../models/User');
+const Performer = require('../models/Performer')
 const supertest = require('supertest');
 const request = supertest(app);
 const jwt = require('jsonwebtoken');
@@ -44,4 +45,20 @@ describe('Users', () => {
     process.env.JWT_SECRET = oldSecret;
     console.error = oldConsole;
   });
+
+  it('Initializes with an empty array', async () => {
+    let user = new User({
+      username: 'kenneth',
+      email: 'kenneth@biz.com',
+      password: 'partario',
+    })
+    let performer = new Performer({})
+    let savedPerformer = await performer.save()
+    let createdUser = await user.save()
+    console.log(savedPerformer)
+    console.log(savedPerformer.id)
+    createdUser.buy({ performer: savedPerformer.id, quantity: 1 })
+    expect(createdUser.shares[0].performer).toEqual(savedPerformer.id)
+    expect(createdUser.shares[0].quantity).toEqual(1)
+  })
 });
