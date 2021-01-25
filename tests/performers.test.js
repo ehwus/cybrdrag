@@ -12,11 +12,14 @@ afterAll(async () => await dbHandler.closeDatabase());
 describe('Performers', () => {
   describe('Performers names', () => {
     it('Initializes with a randomly generated name', async () => {
-      let performer = new Performer({});
+      for (let i = 0; i < 100; i++) {
+        let performer = new Performer({});
+        let performer2 = new Performer({});
+        let savedPerformer = await performer.save();
+        let savedPerformer2 = await performer2.save();
 
-      let savedPerformer = await performer.save();
-
-      expect(savedPerformer.name).not.toBe(null);
+        expect(savedPerformer.name).not.toEqual(savedPerformer2.name);
+      }
     });
   });
   describe('perform()', () => {
