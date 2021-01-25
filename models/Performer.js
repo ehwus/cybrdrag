@@ -32,9 +32,13 @@ const PerformerSchema = new mongoose.Schema({
 
 PerformerSchema.methods.perform = async function () {
   this.performancehistory.push({
-    netearned: 69,
+    netearned: Performer.calculateEarning() - this.costperperformance,
   });
   await this.save();
+};
+
+PerformerSchema.statics.calculateEarning = function () {
+  return Math.floor(Math.random() * 501);
 };
 
 module.exports = Performer = mongoose.model('performer', PerformerSchema);

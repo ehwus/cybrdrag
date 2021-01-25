@@ -21,6 +21,23 @@ describe('Performers', () => {
     expect(updatedPerformer.performancehistory.length).toBe(1);
   });
 
+  it('Gives a net performance amount that takes costs into consideration', async () => {
+    let performanceEarningsFunction = Performer.calculateEarning;
+    Performer.calculateEarning = function () {
+      return 100;
+    };
+
+    let performer = new Performer({
+      name: 'Madame Thiccsaud',
+    });
+    let savedPerformer = await performer.save();
+    await savedPerformer.perform();
+    let updatedPerformer = await Performer.findById(savedPerformer.id);
+    expect(updatedPerformer.performancehistory[0].netearned).toEqual(0);
+
+    Performer.calculateEarning = performanceEarningsFunction;
+  });
+
   describe('GET /', () => {
     it('has a route to get list of all performers', async () => {
       let profileQuery = await request.get('/api/performers');
