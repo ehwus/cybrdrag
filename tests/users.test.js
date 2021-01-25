@@ -74,10 +74,10 @@ describe('Users', () => {
     let createdUser = await user.save();
     expect.assertions(1);
 
-    await expect(createdUser.buy({ performer: savedPerformer.id, quantity: 200 }))
-      .rejects
-      .toEqual(new Error('Insufficient funds'))
-  })
+    await expect(
+      createdUser.buy({ performer: savedPerformer.id, quantity: 200 })
+    ).rejects.toEqual(new Error('Insufficient funds'));
+  });
 
   it('Selling shares in a performer increases your balance', async () => {
     let user = new User({
@@ -92,6 +92,57 @@ describe('Users', () => {
     let updatedUser = await User.findById(createdUser.id);
     await updatedUser.sell({ performer: savedPerformer.id, quantity: 1 });
     let userSoldShares = await User.findById(updatedUser.id);
-    expect(userSoldShares.balance).toEqual(1000)
-  })
+    expect(userSoldShares.balance).toEqual(1000);
+  });
+
+  it("Won't allow selling of more shares than you have", async () => {
+    let user = new User({
+      username: 'kenneth',
+      email: 'kenneth@biz.com',
+      password: 'partario',
+    });
+    let performer = new Performer({});
+    let savedPerformer = await performer.save();
+    let createdUser = await user.save();
+    await createdUser.buy({ performer: savedPerformer.id, quantity: 1 });
+    let updatedUser = await User.findById(createdUser.id);
+    await expect(
+      updatedUser.sell({ performer: savedPerformer.id, quantity: 100 })
+    ).rejects.toEqual(new Error("You can't sell more shares than you own"));
+  });
+
+  it("Will throw an error when trying to sell shares that aren't owned", async () => {
+    let user = new User({
+      username: 'kenneth',
+      email: 'kenneth@biz.com',
+      password: 'partario',
+    });
+    let performer = new Performer({});
+    let savedPerformer = await performer.save();
+    let createdUser = await user.save();
+    await expect(
+      createdUser.sell({ performer: savedPerformer.id, quantity: 100 })
+    ).rejects.toEqual(new Error('You have no shares in this performer'));
+  });
+
+  it('Will remove entry from array if shares get to zero', async () => {
+    let user = new User({
+      username: 'kenneth',
+      email: 'kenneth@biz.com',
+      password: 'partario',
+    });
+    let performer = new Performer({});
+    let performer2 = new Performer({});
+    let savedPerformer = await performer.save();
+    let savedPerformer2 = await performer2.save();
+
+    let createdUser = await user.save();
+    await createdUser.buy({ performer: savedPerformer.id, quantity: 1 });
+    await createdUser.buy({ performer: savedPerformer2.id, quantity: 40 });
+    await createdUser.sell({ performer: savedPerformer.id, quantity: 1 });
+    await createdUser.sell({ performer: savedPerformer2.id, quantity: 20 });
+
+    let updatedUser = await User.findById(createdUser.id);
+    expect(updatedUser.shares.length).toEqual(1);
+  });
 });
