@@ -31,9 +31,13 @@ const PerformerSchema = new mongoose.Schema({
 });
 
 PerformerSchema.methods.perform = async function () {
+  let netRevenue = Performer.calculateEarning() - this.costperperformance;
+
   this.performancehistory.push({
-    netearned: Performer.calculateEarning() - this.costperperformance,
+    netearned: netRevenue,
   });
+  this.worth += netRevenue;
+
   await this.save();
 };
 

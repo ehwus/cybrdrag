@@ -38,6 +38,23 @@ describe('Performers', () => {
     Performer.calculateEarning = performanceEarningsFunction;
   });
 
+  it('Affects the new worth of the performer', async () => {
+    let performanceEarningsFunction = Performer.calculateEarning;
+    Performer.calculateEarning = function () {
+      return 200;
+    };
+
+    let performer = new Performer({
+      name: 'Madame Thiccsaud',
+    });
+    let savedPerformer = await performer.save();
+    await savedPerformer.perform();
+    let updatedPerformer = await Performer.findById(savedPerformer.id);
+    expect(updatedPerformer.worth).toEqual(2100);
+
+    Performer.calculateEarning = performanceEarningsFunction;
+  });
+
   describe('GET /', () => {
     it('has a route to get list of all performers', async () => {
       let profileQuery = await request.get('/api/performers');
