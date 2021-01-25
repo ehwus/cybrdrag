@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema
-const Performer = require('./performer')
+const Schema = mongoose.Schema;
+const Performer = require('./Performer');
 
 const UserSchema = new mongoose.Schema({
   username: {
@@ -24,36 +24,35 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     default: 1000,
   },
-  shares: [{
-    performer: {
-      type: Schema.Types.ObjectId,
-      ref: 'performer',
+  shares: [
+    {
+      performer: {
+        type: Schema.Types.ObjectId,
+        ref: 'performer',
+      },
+      quantity: {
+        type: Number,
+        required: true,
+      },
+      buyprice: {
+        type: Number,
+        required: true,
+      },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
     },
-    quantity: {
-      type: Number,
-      required: true,
-    },
-    buyprice: {
-      type: Number,
-      required: true,
-    },
-    date: {
-      type: Date,
-      default: Date.now,
-    }
-  }],
+  ],
   default: [],
 });
 
 UserSchema.methods.buy = async function (share) {
-  const { performer, quantity } = share
-  console.log(performer)
-  console.log(await Performer.find({}))
-  let performerObject = await Performer.find({ id: performer })
-  console.log(performerObject)
-  let buyprice = Math.floor(performerObject.worth * 0.01)
-  this.shares.push({performer, quantity, buyprice })
-  await this.save()
-}
+  const { performer, quantity } = share;
+  let performerObject = await Performer.findById(performer);
+  let buyprice = Math.floor(performerObject.worth * 0.01);
+  this.shares.push({ performer, quantity, buyprice });
+  await this.save();
+};
 
 module.exports = User = mongoose.model('user', UserSchema);
