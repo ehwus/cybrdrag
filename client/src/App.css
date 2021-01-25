@@ -89,5 +89,16 @@ nav {
 
 .alert-danger {
   font-family: 'Tarrget Condensed';
+  background-color: #7700a6;
+  font-size: 25px;
   color: #defe47;
+  border-radius: 20.5px;
+  border: none;
+  width: 50%;
+  height: 20px;
+  padding: 20px 20px 20px 20px;
+  outline: none;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 5px;
 }
