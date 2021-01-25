@@ -10,6 +10,10 @@ const PerformerSchema = new mongoose.Schema({
     type: Number,
     default: 2000,
   },
+  avatar: {
+    type: String,
+    default: null,
+  },
   performancehistory: {
     type: [
       {
@@ -49,6 +53,10 @@ PerformerSchema.statics.calculateEarning = function () {
 PerformerSchema.pre('save', async function () {
   if (this.name === null) {
     this.name = await randomName();
+  }
+
+  if (this.avatar === null) {
+    this.avatar = `https://avatars.dicebear.com/api/female/${this.id}.svg`;
   }
 });
 

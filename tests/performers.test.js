@@ -24,10 +24,7 @@ describe('Performers', () => {
   });
   describe('perform()', () => {
     it('Adds a performance to the performance history', async () => {
-      let performer = new Performer({
-        name: 'Madame Thiccsaud',
-      });
-
+      let performer = new Performer({});
       let savedPerformer = await performer.save();
       await savedPerformer.perform();
       let updatedPerformer = await Performer.findById(savedPerformer.id);
@@ -40,9 +37,7 @@ describe('Performers', () => {
         return 100;
       };
 
-      let performer = new Performer({
-        name: 'Madame Thiccsaud',
-      });
+      let performer = new Performer({});
       let savedPerformer = await performer.save();
       await savedPerformer.perform();
       let updatedPerformer = await Performer.findById(savedPerformer.id);
@@ -57,9 +52,7 @@ describe('Performers', () => {
         return 200;
       };
 
-      let performer = new Performer({
-        name: 'Madame Thiccsaud',
-      });
+      let performer = new Performer({});
       let savedPerformer = await performer.save();
       await savedPerformer.perform();
       let updatedPerformer = await Performer.findById(savedPerformer.id);
@@ -92,9 +85,7 @@ describe('Performers', () => {
 
   describe('GET /:id', () => {
     it('Returns a performer object when searched for by id', async () => {
-      let performer = await new Performer({
-        name: 'Madame Thiccsaud',
-      });
+      let performer = await new Performer({});
       let savedPerformer = await performer.save();
       let profileQuery = await request.get(
         `/api/performers/${savedPerformer.id}`
