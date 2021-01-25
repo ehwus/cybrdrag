@@ -56,8 +56,26 @@ UserSchema.methods.buy = async function (share) {
     this.balance -= buyprice * quantity;
     await this.save();
   } else {
+    // there's probably a better way to format this error <3
     throw(new Error('Insufficient funds'))
   };
 };
+
+UserSchema.methods.sell = async function (share) {
+  const { performer, quantity } = share;
+  let performerObject = await Performer.findById(performer);
+  let buyprice = Math.floor(performerObject.worth * 0.01);
+
+  console.log(this.shares)
+  let target = this.shares.filter(share => share.performer.toString() === performer)
+  console.log(target)
+  if(!target) throw new Error('You have no shares in this performer')
+  target[0].quantity -= quantity
+  this.balance += quantity * buyprice
+  console.log(target)
+  await this.save()
+
+};
+
 
 module.exports = User = mongoose.model('user', UserSchema);

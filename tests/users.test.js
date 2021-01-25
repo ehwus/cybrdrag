@@ -78,4 +78,20 @@ describe('Users', () => {
       .rejects
       .toEqual(new Error('Insufficient funds'))
   })
+
+  it('Selling shares in a performer increases your balance', async () => {
+    let user = new User({
+      username: 'kenneth',
+      email: 'kenneth@biz.com',
+      password: 'partario',
+    });
+    let performer = new Performer({});
+    let savedPerformer = await performer.save();
+    let createdUser = await user.save();
+    await createdUser.buy({ performer: savedPerformer.id, quantity: 1 });
+    let updatedUser = await User.findById(createdUser.id);
+    await updatedUser.sell({ performer: savedPerformer.id, quantity: 1 });
+    let userSoldShares = await User.findById(updatedUser.id);
+    expect(userSoldShares.balance).toEqual(1000)
+  })
 });
