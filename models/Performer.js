@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const randomName = require('./helper/randomName')
+const randomName = require('./helper/randomName');
 
 const PerformerSchema = new mongoose.Schema({
   name: {
     type: String,
-    default: randomName(),
+    default: null,
   },
   worth: {
     type: Number,
@@ -42,10 +42,14 @@ PerformerSchema.methods.perform = async function () {
   await this.save();
 };
 
-
-
 PerformerSchema.statics.calculateEarning = function () {
   return Math.floor(Math.random() * 501);
 };
+
+PerformerSchema.pre('save', async function () {
+  if (this.name === null) {
+    this.name = await randomName();
+  }
+});
 
 module.exports = Performer = mongoose.model('performer', PerformerSchema);

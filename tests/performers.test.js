@@ -17,9 +17,8 @@ describe('Performers', () => {
       let savedPerformer = await performer.save();
 
       expect(savedPerformer.name).not.toBe(null);
-      console.log(savedPerformer.name)
-    })
-  })
+    });
+  });
   describe('perform()', () => {
     it('Adds a performance to the performance history', async () => {
       let performer = new Performer({

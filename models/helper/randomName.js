@@ -1,26 +1,25 @@
-const parse = require('csv-parse')
-const parser = parse({ delimiter: ','})
-const fs = require('fs')
-let csv = fs.readFileSync(require('path').resolve(__dirname, "queens.csv"))
+const parse = require('csv-parse');
+const fs = require('fs');
 
-const randomName = function () {
-  firstName = []
-  lastName = []
-  parse(csv).on('data', (row) => {
+const randomName = async function () {
+  firstName = [];
+  lastName = [];
+  returnString = '';
 
-    firstName.push(row[0])
-    lastName.push(row[1])
-  })
-  let returnString = ''
-  console.log(firstName)
-  //
-  // returnString += firstName[Math.floor(Math.random() * firstName.length)]
-  //
-  // returnString += ' '
-  //
-  // returnString += lastName[Math.floor(Math.random() * lastName.length)]
-  //
-  // return returnString;
+  let parser = fs
+    .createReadStream(require('path').resolve(__dirname, 'queens.csv'))
+    .pipe(parse());
+
+  for await (const record of parser) {
+    firstName.push(record[0]);
+    lastName.push(record[1]);
+  }
+
+  returnString += firstName[Math.floor(Math.random() * firstName.length)];
+  returnString += ' ';
+  returnString += lastName[Math.floor(Math.random() * lastName.length)];
+
+  return returnString;
 };
 
-module.exports = randomName
+module.exports = randomName;
