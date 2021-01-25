@@ -62,4 +62,20 @@ describe('Users', () => {
     );
     expect(updatedUser.shares[0].quantity).toEqual(1);
   });
+
+  it('Returns an error if you try to spend more money then you have', async () => {
+    let user = new User({
+      username: 'kenneth',
+      email: 'kenneth@biz.com',
+      password: 'partario',
+    });
+    let performer = new Performer({});
+    let savedPerformer = await performer.save();
+    let createdUser = await user.save();
+    expect.assertions(1);
+
+    await expect(createdUser.buy({ performer: savedPerformer.id, quantity: 200 }))
+      .rejects
+      .toEqual(new Error('Insufficient funds'))
+  })
 });

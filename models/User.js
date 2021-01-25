@@ -51,8 +51,13 @@ UserSchema.methods.buy = async function (share) {
   const { performer, quantity } = share;
   let performerObject = await Performer.findById(performer);
   let buyprice = Math.floor(performerObject.worth * 0.01);
-  this.shares.push({ performer, quantity, buyprice });
-  await this.save();
+  if((buyprice * quantity) <= this.balance) {
+    this.shares.push({ performer, quantity, buyprice });
+    this.balance -= buyprice * quantity;
+    await this.save();
+  } else {
+    throw(new Error('Insufficient funds'))
+  };
 };
 
 module.exports = User = mongoose.model('user', UserSchema);
