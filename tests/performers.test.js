@@ -10,49 +10,51 @@ afterEach(async () => await dbHandler.clearDatabase());
 afterAll(async () => await dbHandler.closeDatabase());
 
 describe('Performers', () => {
-  it('Adds a performance to the performance history', async () => {
-    let performer = new Performer({
-      name: 'Madame Thiccsaud',
+  describe('perform()', () => {
+    it('Adds a performance to the performance history', async () => {
+      let performer = new Performer({
+        name: 'Madame Thiccsaud',
+      });
+
+      let savedPerformer = await performer.save();
+      await savedPerformer.perform();
+      let updatedPerformer = await Performer.findById(savedPerformer.id);
+      expect(updatedPerformer.performancehistory.length).toBe(1);
     });
 
-    let savedPerformer = await performer.save();
-    await savedPerformer.perform();
-    let updatedPerformer = await Performer.findById(savedPerformer.id);
-    expect(updatedPerformer.performancehistory.length).toBe(1);
-  });
+    it('Gives a net performance amount that takes costs into consideration', async () => {
+      let performanceEarningsFunction = Performer.calculateEarning;
+      Performer.calculateEarning = function () {
+        return 100;
+      };
 
-  it('Gives a net performance amount that takes costs into consideration', async () => {
-    let performanceEarningsFunction = Performer.calculateEarning;
-    Performer.calculateEarning = function () {
-      return 100;
-    };
+      let performer = new Performer({
+        name: 'Madame Thiccsaud',
+      });
+      let savedPerformer = await performer.save();
+      await savedPerformer.perform();
+      let updatedPerformer = await Performer.findById(savedPerformer.id);
+      expect(updatedPerformer.performancehistory[0].netearned).toEqual(0);
 
-    let performer = new Performer({
-      name: 'Madame Thiccsaud',
+      Performer.calculateEarning = performanceEarningsFunction;
     });
-    let savedPerformer = await performer.save();
-    await savedPerformer.perform();
-    let updatedPerformer = await Performer.findById(savedPerformer.id);
-    expect(updatedPerformer.performancehistory[0].netearned).toEqual(0);
 
-    Performer.calculateEarning = performanceEarningsFunction;
-  });
+    it('Affects the new worth of the performer', async () => {
+      let performanceEarningsFunction = Performer.calculateEarning;
+      Performer.calculateEarning = function () {
+        return 200;
+      };
 
-  it('Affects the new worth of the performer', async () => {
-    let performanceEarningsFunction = Performer.calculateEarning;
-    Performer.calculateEarning = function () {
-      return 200;
-    };
+      let performer = new Performer({
+        name: 'Madame Thiccsaud',
+      });
+      let savedPerformer = await performer.save();
+      await savedPerformer.perform();
+      let updatedPerformer = await Performer.findById(savedPerformer.id);
+      expect(updatedPerformer.worth).toEqual(2100);
 
-    let performer = new Performer({
-      name: 'Madame Thiccsaud',
+      Performer.calculateEarning = performanceEarningsFunction;
     });
-    let savedPerformer = await performer.save();
-    await savedPerformer.perform();
-    let updatedPerformer = await Performer.findById(savedPerformer.id);
-    expect(updatedPerformer.worth).toEqual(2100);
-
-    Performer.calculateEarning = performanceEarningsFunction;
   });
 
   describe('GET /', () => {
