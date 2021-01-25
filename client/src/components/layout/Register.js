@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     email: '',
     password: '',
     password2: ''
@@ -14,14 +14,14 @@ const Register = () => {
     ...formData, [e.target.name]: e.target.value
   });
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     if(password !== password2) {
       console.log('Passwords do not match')
     } else {
-      console.log(formData);
+      console.log('Success');
+      }
     }
-  }
 
   return (
     <div className='container'>
