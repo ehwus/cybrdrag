@@ -145,4 +145,25 @@ describe('Users', () => {
     let updatedUser = await User.findById(createdUser.id);
     expect(updatedUser.shares.length).toEqual(1);
   });
+
+  it('adds transactions to history', async () => {
+    let user = new User({
+      username: 'kenneth',
+      email: 'kenneth@biz.com',
+      password: 'partario',
+    });
+    let performer = new Performer({});
+    let performer2 = new Performer({});
+    let savedPerformer = await performer.save();
+    let savedPerformer2 = await performer2.save();
+
+    let createdUser = await user.save();
+    await createdUser.buy({ performer: savedPerformer.id, quantity: 1 });
+    await createdUser.buy({ performer: savedPerformer2.id, quantity: 40 });
+    await createdUser.sell({ performer: savedPerformer.id, quantity: 1 });
+    await createdUser.sell({ performer: savedPerformer2.id, quantity: 20 });
+
+    let updatedUser = await User.findById(createdUser.id);
+    expect(updatedUser.transactions.length).toEqual(4);
+  });
 });
