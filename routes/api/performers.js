@@ -7,12 +7,13 @@ const Performer = require('../../models/Performer');
 // @route   GET api/performers
 // @desc    Get all performers
 // @access  Public
-router.get('/', async(req, res) => {
+router.get('/', async (req, res) => {
   try {
     const performers = await Performer.find(req.performers);
     res.json(performers);
   } catch (err) {
-    console.error(err.message)
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 
@@ -22,12 +23,12 @@ router.get('/', async(req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const performer = await Performer.findById(req.params.id)
-    res.json(performer)
+    const performer = await Performer.findById(req.params.id);
+    res.json(performer);
   } catch (err) {
-    console.error(err.message)
-    res.status(500).send('Server Error')
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
-})
+});
 
 module.exports = router;

@@ -22,6 +22,7 @@ const PerformerSchema = new mongoose.Schema({
         },
       },
     ],
+    default: [],
   },
   costperperformance: {
     type: Number,
