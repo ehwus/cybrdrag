@@ -86,3 +86,8 @@ nav {
   font-size: 60px;
   color: #defe47;
 }
+
+.alert-danger {
+  font-family: 'Tarrget Condensed';
+  color: #defe47;
+}
