@@ -17,6 +17,7 @@ describe('Performers', () => {
       let savedPerformer = await performer.save();
 
       expect(savedPerformer.name).not.toBe(null);
+      console.log(savedPerformer.name)
     })
   })
   describe('perform()', () => {
