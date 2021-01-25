@@ -30,4 +30,11 @@ const PerformerSchema = new mongoose.Schema({
   },
 });
 
+PerformerSchema.methods.perform = async function () {
+  this.performancehistory.push({
+    netearned: 69,
+  });
+  await this.save();
+};
+
 module.exports = Performer = mongoose.model('performer', PerformerSchema);

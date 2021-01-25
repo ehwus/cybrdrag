@@ -10,6 +10,17 @@ afterEach(async () => await dbHandler.clearDatabase());
 afterAll(async () => await dbHandler.closeDatabase());
 
 describe('Performers', () => {
+  it('Adds a performance to the performance history', async () => {
+    let performer = new Performer({
+      name: 'Madame Thiccsaud',
+    });
+
+    let savedPerformer = await performer.save();
+    await savedPerformer.perform();
+    let updatedPerformer = await Performer.findById(savedPerformer.id);
+    expect(updatedPerformer.performancehistory.length).toBe(1);
+  });
+
   describe('GET /', () => {
     it('has a route to get list of all performers', async () => {
       let profileQuery = await request.get('/api/performers');
