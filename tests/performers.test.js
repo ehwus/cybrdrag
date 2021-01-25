@@ -10,6 +10,15 @@ afterEach(async () => await dbHandler.clearDatabase());
 afterAll(async () => await dbHandler.closeDatabase());
 
 describe('Performers', () => {
+  describe('Performers names', () => {
+    it('Initializes with a randomly generated name', async () => {
+      let performer = new Performer({});
+
+      let savedPerformer = await performer.save();
+
+      expect(savedPerformer.name).not.toBe(null);
+    })
+  })
   describe('perform()', () => {
     it('Adds a performance to the performance history', async () => {
       let performer = new Performer({

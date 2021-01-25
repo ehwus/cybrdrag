@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const randomName = require('./helper/randomName')
 
 const PerformerSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    default: randomName(),
   },
   worth: {
     type: Number,
@@ -40,6 +41,8 @@ PerformerSchema.methods.perform = async function () {
 
   await this.save();
 };
+
+
 
 PerformerSchema.statics.calculateEarning = function () {
   return Math.floor(Math.random() * 501);
