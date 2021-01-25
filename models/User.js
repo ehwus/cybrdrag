@@ -51,14 +51,13 @@ UserSchema.methods.buy = async function (share) {
   const { performer, quantity } = share;
   let performerObject = await Performer.findById(performer);
   let buyprice = Math.floor(performerObject.worth * 0.01);
-  if (buyprice * quantity <= this.balance) {
-    this.shares.push({ performer, quantity, buyprice });
-    this.balance -= buyprice * quantity;
-    await this.save();
-  } else {
-    // there's probably a better way to format this error <3
+
+  if (buyprice * quantity >= this.balance)
     throw new Error('Insufficient funds');
-  }
+
+  this.shares.push({ performer, quantity, buyprice });
+  this.balance -= buyprice * quantity;
+  await this.save();
 };
 
 UserSchema.methods.sell = async function (share) {
