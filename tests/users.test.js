@@ -62,6 +62,4 @@ describe('Users', () => {
     );
     expect(updatedUser.shares[0].quantity).toEqual(1);
   });
-
-  it('stops you selling if the performer is on timeout'
 });
