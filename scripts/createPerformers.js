@@ -12,7 +12,7 @@ const createPerformers = async () => {
   }
 
   if (process.env.NODE_ENV != 'production') {
-    Performer.allPerform();
+    await Performer.allPerform();
   }
 };
 
