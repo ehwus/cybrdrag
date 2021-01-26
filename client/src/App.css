@@ -102,3 +102,37 @@ nav {
   margin: 0 auto;
   margin-bottom: 5px;
 }
+
+.performerCard {
+  width: auto;
+  height: 160px;
+}
+
+.performerCard .performerName {
+  font-family: 'Tarrget Condensed';
+  font-size: 41px;
+  color: #defe47;
+  display: flex;
+  /* position: relative;
+  right: 35px; */
+}
+
+.performerCard .performerWorth {
+  font-family: 'Tarrget Condensed';
+  font-size: 41px;
+  color: #fe00fe;
+  display: flex;
+  margin: 0;
+}
+
+.performerCard .performerWorth i {
+  color: #defe47;
+  display: inline;
+  margin-left: -44px;
+}
+
+.performerCard img {
+  height: 100px;
+  width: auto;
+  float: left;
+}
