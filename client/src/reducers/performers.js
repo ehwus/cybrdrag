@@ -17,7 +17,7 @@ function performerReducer(state = initialState, action) {
     case GET_PERFORMER:
       return {
         ...state,
-        performer: payload,
+        performers: payload,
         loading: false
       };
     case GET_PERFORMERS:
