@@ -5,8 +5,8 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  PERFORMER: null,
-  PERFORMERS: [],
+  performer: perfromer,
+  performers: [],
   loading: true,
   errors: {}
 }
@@ -18,13 +18,13 @@ function performerReducer(state = initialState, action) {
     case GET_PERFORMER:
       return {
         ...state,
-        PERFORMER: payload,
+        performer: payload,
         loading: false
       };
     case GET_PERFORMERS:
       return {
         ...state,
-        PERFORMERS: payload,
+        performers: payload,
         loading: false
       };
     case PERFORMERS_ERROR:
@@ -32,7 +32,7 @@ function performerReducer(state = initialState, action) {
         ...state,
         error: payload,
         loading: false,
-        PERFORMER: null
+        performer: null
       };
     default:
       return state;

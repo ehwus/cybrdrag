@@ -1,6 +1,4 @@
 import axios from "axios";
-import { setAlert } from "./alert";
-
 import {
   GET_PERFORMER,
   GET_PERFORMERS,
@@ -28,7 +26,7 @@ export const getPerformers = () => async (dispatch) => {
 };
 
 // Get profile by ID
-export const getProfileById = (performerID) => async (dispatch) => {
+export const getPerformerById = (performerID) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/performers/${performerID}`);
 
