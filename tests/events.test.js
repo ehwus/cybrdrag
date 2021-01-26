@@ -37,7 +37,7 @@ describe('Events', () => {
     }
   });
 
-  it('No typos in the constant file', () => {
+  it('No typos in the traits file', () => {
     for (let key in TRAITS) {
       expect(TRAITS[key]).toEqual(key);
     }
