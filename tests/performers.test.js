@@ -83,6 +83,29 @@ describe('Performers', () => {
     });
   });
 
+  describe('Timeouts', () => {
+    it('if a performer is on a timeout, they earn nothing for each performance', async () => {
+      let performer = await new Performer({ timeout: 2 });
+      let savedPerformer = await performer.save();
+
+      await savedPerformer.perform();
+      await savedPerformer.perform();
+
+      expect(savedPerformer.worth).toEqual(1800)
+    })
+
+    it('if a performer then leaves timeout they earn money again', async () => {
+      let performer = await new Performer({ timeout: 2 });
+      let savedPerformer = await performer.save();
+
+      await savedPerformer.perform();
+      await savedPerformer.perform();
+      await savedPerformer.perform();
+
+      expect(savedPerformer.worth).not.toEqual(1800)
+    })
+  })
+
   describe('GET /:id', () => {
     it('Returns a performer object when searched for by id', async () => {
       let performer = await new Performer({});
