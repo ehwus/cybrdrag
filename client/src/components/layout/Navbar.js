@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, {Fragment} from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import { logout } from '../../actions/auth'
+import {logout} from '../../actions/auth'
 
-const Navbar = ({auth: { isAuthenticated, loading }, logout}) => {
+const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
   const authlinks = (
     <div className='navButtons'>
       <button className='purpleButton' onClick={logout}>Logout</button>
@@ -26,7 +26,7 @@ const Navbar = ({auth: { isAuthenticated, loading }, logout}) => {
       <h1 className='logo'>
         <i className='fas fa-dice-d20'></i>CYBRDRAG
       </h1>
-      { !loading && (<Fragment>{ isAuthenticated ? authlinks : guestlinks }</Fragment>)}
+      {!loading && (<Fragment>{isAuthenticated ? authlinks : guestlinks}</Fragment>)}
     </nav>
   );
 };
@@ -40,4 +40,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps, {logout})(Navbar);

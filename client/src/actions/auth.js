@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setAlert } from "./alert";
+import {setAlert} from "./alert";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -32,14 +32,14 @@ export const loadUser = () => async dispatch => {
 }
 
 // Register a user
-export const register = ({ username, email, password }) => async dispatch => {
+export const register = ({username, email, password}) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   }
 
-  const body = JSON.stringify({ username, email, password });
+  const body = JSON.stringify({username, email, password});
 
   try {
     const res = await axios.post('/api/users', body, config);
@@ -64,14 +64,14 @@ export const register = ({ username, email, password }) => async dispatch => {
 }
 
 // Login a user
-export const login = ( email, password ) => async dispatch => {
+export const login = (email, password) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   }
 
-  const body = JSON.stringify({ email, password });
+  const body = JSON.stringify({email, password});
 
   try {
     const res = await axios.post('/api/auth', body, config);
@@ -97,5 +97,5 @@ export const login = ( email, password ) => async dispatch => {
 
 // LOG OUT
 export const logout = () => dispatch => {
-  dispatch({ type: LOGOUT })
+  dispatch({type: LOGOUT})
 }

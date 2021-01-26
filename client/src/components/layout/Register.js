@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom'
-import { setAlert } from '../../actions/alert';
-import { register } from "../../actions/auth";
+import React, {useState} from 'react';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom'
+import {setAlert} from '../../actions/alert';
+import {register} from "../../actions/auth";
 import PropTypes from 'prop-types'
 
 
-const Register = ({ setAlert, register, isAuthenticated }) => {
+const Register = ({setAlert, register, isAuthenticated}) => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -14,7 +14,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     password2: ''
   });
 
-  const { username, email, password, password2 } = formData;
+  const {username, email, password, password2} = formData;
 
   const onChange = e => setFormData({
     ...formData, [e.target.name]: e.target.value
@@ -22,15 +22,15 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    if(password !== password2) {
+    if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      register({ username, email, password });
-      }
+      register({username, email, password});
     }
+  }
 
   if (isAuthenticated) {
-    return <Redirect to={"/dashboard"} />
+    return <Redirect to={"/dashboard"}/>
   }
 
   return (
@@ -87,7 +87,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           />
         </div>
 
-        <input type='submit' value='submit' className='purpleButton' />
+        <input type='submit' value='submit' className='purpleButton'/>
       </form>
     </div>
   );
@@ -103,4 +103,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 })
 
-export default connect(mapStateToProps, { setAlert, register })(Register);
+export default connect(mapStateToProps, {setAlert, register})(Register);

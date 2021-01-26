@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom'
-import { connect } from 'react-redux';
+import React, {useState} from 'react';
+import {Redirect} from 'react-router-dom'
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import { login } from '../../actions/auth'
+import {login} from '../../actions/auth'
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({login, isAuthenticated}) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
 
-  const { email, password } = formData;
+  const {email, password} = formData;
 
   const onChange = e => setFormData({
     ...formData, [e.target.name]: e.target.value
@@ -22,7 +22,7 @@ const Login = ({ login, isAuthenticated }) => {
   }
 
   if (isAuthenticated) {
-    return <Redirect to={"/dashboard"} />
+    return <Redirect to={"/dashboard"}/>
   }
 
   return (
@@ -45,7 +45,7 @@ const Login = ({ login, isAuthenticated }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <input type='submit' value='submit' className='purpleButton' />
+        <input type='submit' value='submit' className='purpleButton'/>
       </form>
     </div>
   );
@@ -60,5 +60,5 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 })
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, {login})(Login);
 
