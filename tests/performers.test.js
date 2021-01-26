@@ -151,6 +151,9 @@ describe('Performers', () => {
       expect(performerList[1].performancehistory.length).toEqual(1)
       expect(performerList[2].performancehistory.length).toEqual(1)
 
+    });
+  });
+
   
   describe('GET /top', () => {
     it('Returns a performer list sorted by worth', async () => {
