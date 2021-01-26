@@ -26,9 +26,9 @@ export const getPerformers = () => async (dispatch) => {
 };
 
 // Get profile by ID
-export const getPerformerById = (performerID) => async (dispatch) => {
+export const getPerformersById = (performersID) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/performers/${performerID}`);
+    const res = await axios.get(`/api/performers/${performersID}`);
 
     dispatch({
       type: GET_PERFORMER,
