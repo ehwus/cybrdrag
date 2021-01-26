@@ -13,4 +13,4 @@ async function createValidUser() {
     .set('Accept', 'application/json');
 }
 
-module.exports = { createValidUser };
+module.exports = {createValidUser};

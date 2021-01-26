@@ -73,8 +73,9 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.methods.buy = async function (share) {
-  const { performer, quantity } = share;
+  const {performer, quantity} = share;
   let performerObject = await Performer.findById(performer);
+
   let price = Math.floor(performerObject.worth * 0.01);
 
   if (price * quantity >= this.balance) throw new Error('Insufficient funds');
@@ -130,6 +131,7 @@ UserSchema.methods.addTransaction = async function (transaction) {
   // let newTransaction = new transaction(transaction);
   // await transaction.save();
   this.transactions.push(transaction);
+
   await this.save();
 };
 

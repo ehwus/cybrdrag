@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alert';
-import { register } from "../../actions/auth";
+import React, {useState} from 'react';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom'
+import {setAlert} from '../../actions/alert';
+import {register} from "../../actions/auth";
 import PropTypes from 'prop-types'
 
 
-const Register = ({ setAlert, register }) => {
+const Register = ({setAlert, register, isAuthenticated}) => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -13,7 +14,7 @@ const Register = ({ setAlert, register }) => {
     password2: ''
   });
 
-  const { username, email, password, password2 } = formData;
+  const {username, email, password, password2} = formData;
 
   const onChange = e => setFormData({
     ...formData, [e.target.name]: e.target.value
@@ -21,12 +22,16 @@ const Register = ({ setAlert, register }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    if(password !== password2) {
+    if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      register({ username, email, password });
-      }
+      register({username, email, password});
     }
+  }
+
+  if (isAuthenticated) {
+    return <Redirect to={"/dashboard"}/>
+  }
 
   return (
     <div className='container'>
@@ -82,7 +87,7 @@ const Register = ({ setAlert, register }) => {
           />
         </div>
 
-        <input type='submit' value='submit' className='purpleButton' />
+        <input type='submit' value='submit' className='purpleButton'/>
       </form>
     </div>
   );
@@ -91,6 +96,11 @@ const Register = ({ setAlert, register }) => {
 Register.prototype = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
-export default connect(null, { setAlert, register })(Register);
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, {setAlert, register})(Register);

@@ -55,7 +55,7 @@ describe('Users', () => {
     let performer = new Performer({});
     let savedPerformer = await performer.save();
     let createdUser = await user.save();
-    await createdUser.buy({ performer: savedPerformer.id, quantity: 1 });
+    await createdUser.buy({performer: savedPerformer.id, quantity: 1});
     let updatedUser = await User.findById(createdUser.id);
     expect(updatedUser.shares[0].performer.toString()).toEqual(
       savedPerformer.id

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
-const { check, validationResult } = require('express-validator');
+const {check, validationResult} = require('express-validator');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
@@ -15,7 +15,7 @@ router.post(
     check(
       'username',
       'Usernames must be between 5 and 30 characters'
-    ).isLength({ min: 5, max: 30 }),
+    ).isLength({min: 5, max: 30}),
     check('email', 'Please include a valid email').isEmail(),
     check('password', 'Password must be at least 5 characters long').isLength({
       min: 5,
@@ -24,17 +24,17 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({errors: errors.array()});
     }
 
-    const { username, email, password } = req.body;
+    const {username, email, password} = req.body;
 
     try {
-      let user = await User.findOne({ email });
+      let user = await User.findOne({email});
       if (user) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'User already exists' }] });
+          .json({errors: [{msg: 'User already exists'}]});
       }
 
       user = new User({
@@ -57,10 +57,10 @@ router.post(
       jwt.sign(
         payload,
         process.env.JWT_SECRET,
-        { expiresIn: 3600 },
+        {expiresIn: 3600},
         (err, token) => {
           if (err) throw err;
-          res.json({ token });
+          res.json({token});
         }
       );
     } catch (err) {
