@@ -93,6 +93,17 @@ describe('Performers', () => {
 
       expect(savedPerformer.worth).toEqual(1800)
     })
+
+    it('if a performer then leaves timeout they earn money again', async () => {
+      let performer = await new Performer({ timeout: 2 });
+      let savedPerformer = await performer.save();
+
+      await savedPerformer.perform();
+      await savedPerformer.perform();
+      await savedPerformer.perform();
+
+      expect(savedPerformer.worth).not.toEqual(1800)
+    })
   })
 
   describe('GET /:id', () => {
