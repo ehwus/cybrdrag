@@ -33,16 +33,27 @@ const PerformerSchema = new mongoose.Schema({
     type: Number,
     default: 100,
   },
+  timeout: {
+    type: Number,
+    default: 0,
+  },
 });
 
 PerformerSchema.methods.perform = async function () {
-  let netRevenue = Performer.calculateEarning() - this.costperperformance;
-
-  this.performancehistory.push({
-    netearned: netRevenue,
-  });
-  this.worth += netRevenue;
-
+  if(this.timeout != 0) {
+    let netRevenue = - this.costperperformance;
+    this.timeout -= 1;
+    this.performancehistory.push({
+      netearned: netRevenue,
+    });
+    this.worth += netRevenue;
+  } else {
+    let netRevenue = Performer.calculateEarning() - this.costperperformance;
+    this.performancehistory.push({
+      netearned: netRevenue,
+    });
+    this.worth += netRevenue;
+  }
   await this.save();
 };
 
