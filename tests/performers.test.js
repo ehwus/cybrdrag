@@ -108,4 +108,43 @@ describe('Performers', () => {
       console.error = oldConsole;
     });
   });
+  
+  describe('GET /top', () => {
+    it('Returns a performer list sorted by worth', async () => {
+      let performer1 = await new Performer({worth: 1000});
+      let savedPerformer1 = await performer1.save();
+
+      let performer2 = await new Performer({worth: 4000});
+      let savedPerformer2 = await performer2.save();
+
+      let performer3 = await new Performer({worth: 3000});
+      let savedPerformer3 = await performer3.save();
+
+      let performer4 = await new Performer({worth: 2500});
+      let savedPerformer4 = await performer4.save();
+
+      let performer5 = await new Performer({worth: 3500});
+      let savedPerformer5 = await performer5.save();
+
+      let profileQuery = await request.get(
+        '/api/performers/top'
+      );
+      expect(profileQuery.status).toEqual(200);
+      expect(profileQuery.body[0]._id).toBe(savedPerformer2.id);
+    });
+
+    it('Returns an error if there is a database failure', async () => {
+      let oldPerformer = Performer.find;
+      let oldConsole = console.error;
+      console.error = jest.fn();
+      Performer.find = jest.fn(() => {
+        throw new Error('Foo');
+      });
+      let profileQuery = await request.get('/api/performers/top');
+      expect(profileQuery.status).toEqual(500);
+
+      Performer.find = oldPerformer;
+      console.error = oldConsole;
+    });
+  });
 });
