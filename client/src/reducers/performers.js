@@ -5,7 +5,6 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  performer: perfromer,
   performers: [],
   loading: true,
   errors: {}
