@@ -1,0 +1,13 @@
+// Constant for all possible traits that performers can have
+module.exports = {
+  VEGETARIAN: 'VEGETARIAN',
+  FUSSY: 'FUSSY',
+  SUBSERVIENT: 'SUBSERVIENT',
+  ANARCHOCAPITALIST: 'ANARCHOCAPITALIST',
+  UNDERCOVER: 'UNDERCOVER',
+  WOKE: 'WOKE',
+  OBLIVIOUS: 'OBLIVIOUS',
+  HACKER: 'HACKER',
+  BORING: 'BORING',
+  TOXIC: 'TOXIC',
+};
