@@ -37,6 +37,12 @@ describe('Events', () => {
     }
   });
 
+  it('No typos in the constant file', () => {
+    for (let key in TRAITS) {
+      expect(TRAITS[key]).toEqual(key);
+    }
+  });
+
   it('Perform function has a chance to spawn an event', async () => {
     let performer = new Performer({ worth: 999999 });
     let savedPerformer = await performer.save();
