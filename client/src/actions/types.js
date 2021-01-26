@@ -7,3 +7,7 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
+export const GET_PERFORMERS = 'GET_PERFORMERS';
+export const GET_PERFORMER = 'GET_PERFORMER';
+export const PERFORMERS_ERROR = 'PERFORMERS_ERROR';
+export const CLEAR_PERFORMER = 'CLEAR_PERFORMER';
