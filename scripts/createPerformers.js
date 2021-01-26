@@ -10,6 +10,10 @@ const createPerformers = async () => {
     let newPerformer = new Performer({});
     await newPerformer.save();
   }
+
+  if (process.env.NODE_ENV != 'production') {
+    await Performer.allPerform();
+  }
 };
 
 module.exports = createPerformers;

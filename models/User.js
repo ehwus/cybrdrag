@@ -95,6 +95,9 @@ UserSchema.methods.buy = async function (share) {
 UserSchema.methods.sell = async function (share) {
   const { performer, quantity } = share;
   let performerObject = await Performer.findById(performer);
+  if(performerObject.timeout != 0) {
+    throw new Error("You can't sell a performer whilst they cannot stream!")
+  } 
   let price = Math.floor(performerObject.worth * 0.01);
 
   let target = this.shares.filter(
