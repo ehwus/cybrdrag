@@ -1,5 +1,5 @@
 import React from 'react';
-import PerformerCard from '../layout/PerformerCard';
+import PerformerCard from '../performers/PerformerCard';
 import PropTypes from 'prop-types';
 
 let testPerformer = {

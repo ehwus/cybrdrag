@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 
 const PerformerCard = ({ performer: { _id, name, worth, avatar } }) => {
-
-
   return (
     <div className='performerCard'>
       <img src={avatar} className='performerAvatar' alt='Avatar'></img>

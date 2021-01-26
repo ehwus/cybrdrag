@@ -1,10 +1,11 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import Register from '../layout/Register';
-import Login from '../layout/Login';
+import Register from '../auth/Register';
+import Login from '../auth/Login';
 import Alert from "../layout/Alert";
 import Dashboard from '../Dashboard/Dashboard';
-import Performers from '../layout/Performers';
+import Performers from '../performers/Performers';
+import PerformersById from "../performer/PerformersById";
 import PrivateRoute from '../routing/PrivateRoute';
 
 const Routes = props => {
@@ -16,6 +17,7 @@ const Routes = props => {
         <Route exact path="/login" component={Login}/>
         <PrivateRoute exact path="/dashboard" component={Dashboard}/>
         <PrivateRoute exact path="/performers" component={Performers}/>
+        <PrivateRoute exact path="/performers/:id" component={PerformersById}/>
       </Switch>
     </section>
   );
