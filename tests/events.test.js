@@ -23,6 +23,20 @@ describe('Events', () => {
     }
   });
 
+  it('All traits are used', () => {
+    let usedTraits = [];
+
+    for (let key in possibleEvents) {
+      for (let trait of possibleEvents[key].counters) {
+        usedTraits.push(trait);
+      }
+    }
+
+    for (let trait of Object.keys(TRAITS)) {
+      expect(usedTraits).toContain(trait);
+    }
+  });
+
   it('Perform function has a chance to spawn an event', async () => {
     let performer = new Performer({ worth: 999999 });
     let savedPerformer = await performer.save();
