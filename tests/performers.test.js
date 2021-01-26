@@ -108,6 +108,26 @@ describe('Performers', () => {
       console.error = oldConsole;
     });
   });
+
+
+  describe('#statics.allPerform', () => {
+    it('makes all performers perform', async () => {
+      let performer1 = await new Performer({});
+      let savedPerformer1 = await performer1.save();
+
+      let performer2 = await new Performer({});
+      let savedPerformer2 = await performer2.save();
+
+      let performer3 = await new Performer({});
+      let savedPerformer3 = await performer3.save();
+
+      await Performer.allPerform();
+      let performerList = await Performer.find({})
+
+      expect(performerList[0].performancehistory.length).toEqual(1)
+      expect(performerList[1].performancehistory.length).toEqual(1)
+      expect(performerList[2].performancehistory.length).toEqual(1)
+
   
   describe('GET /top', () => {
     it('Returns a performer list sorted by worth', async () => {
@@ -145,6 +165,7 @@ describe('Performers', () => {
 
       Performer.find = oldPerformer;
       console.error = oldConsole;
+
     });
   });
 });
