@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom'
 
-const PerformerCard = ({ performer: { name, worth, avatar } }) => {
+const PerformerCard = ({ performer: { _id, name, worth, avatar } }) => {
   return (
     <div className='performerCard'>
       <img src={avatar} className='performerAvatar' alt='Avatar'></img>
-      <div className='performerName'>{name}</div>
+      <Link to={`/performers/${_id}`} className='performerName'>{name}</Link>
       <h1 className='performerWorth'>
         {worth.toLocaleString()}
         <i className='fas fa-dice-d20'></i>
