@@ -130,7 +130,21 @@ describe('Performers', () => {
         '/api/performers/top'
       );
       expect(profileQuery.status).toEqual(200);
-      console.log(profileQuery.body);
+      expect(profileQuery.body[0]._id).toBe(savedPerformer2.id);
+    });
+
+    it('Returns an error if there is a database failure', async () => {
+      let oldPerformer = Performer.find;
+      let oldConsole = console.error;
+      console.error = jest.fn();
+      Performer.find = jest.fn(() => {
+        throw new Error('Foo');
+      });
+      let profileQuery = await request.get('/api/performers/top');
+      expect(profileQuery.status).toEqual(500);
+
+      Performer.find = oldPerformer;
+      console.error = oldConsole;
     });
   });
 });
