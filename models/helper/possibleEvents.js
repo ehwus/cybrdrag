@@ -1,3 +1,9 @@
+// Possible events that can occur
+// Run 'npm test' to be validate
+// Events must have a name and webdescription
+// timeout and multiplier currently supported as consequences
+// ensure counter is included in traits.js
+
 module.exports = {
   foodPoisoning: {
     name: 'Food Poisoning',
