@@ -58,6 +58,14 @@ PerformerSchema.pre('save', async function () {
   if (this.avatar === null) {
     this.avatar = `https://avatars.dicebear.com/api/female/${this.id}.svg`;
   }
+
 });
+
+PerformerSchema.statics.allPerform = async function () {
+  let performerList = await Performer.find({});
+  for(i = 0; i < performerList.length; i++) {
+    await performerList[i].perform();
+  };
+}
 
 module.exports = Performer = mongoose.model('performer', PerformerSchema);
