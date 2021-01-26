@@ -70,4 +70,18 @@ router.post(
   }
 );
 
+
+// @route   GET api/users/top
+// @desc    Get all users sorted by balance
+// @access  Public
+router.get('/top', async (req, res) => {
+  try {
+    const users = await User.find({}).sort({ balance: -1 });
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

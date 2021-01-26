@@ -167,3 +167,53 @@ describe('Users', () => {
     expect(updatedUser.transactions.length).toEqual(4);
   });
 });
+
+describe('GET /top', () => {
+  it('sorts users by balance', async () => {
+    let user1 = new User({
+      username: 'kenneth1',
+      email: 'kenneth1@biz.com',
+      password: 'partario',
+      balance: 2000
+    });
+
+    let user2 = new User({
+      username: 'kenneth2',
+      email: 'kenneth2@biz.com',
+      password: 'partario',
+      balance: 4000
+    });
+
+    let user3 = new User({
+      username: 'kenneth3',
+      email: 'kenneth3@biz.com',
+      password: 'partario',
+      balance: 3000
+    });
+
+    let createdUser1 = await user1.save();
+    let createdUser2 = await user2.save();
+    let createdUser3 = await user3.save();
+
+    let profileQuery = await request.get(
+      '/api/users/top'
+    );
+    expect(profileQuery.status).toEqual(200)
+    expect(profileQuery.body[0]._id).toEqual(createdUser2.id);
+  });
+
+  it('Returns an error if there is a database failure', async () => {
+    let oldUser = User.find;
+    let oldConsole = console.error;
+    console.error = jest.fn();
+    User.find = jest.fn(() => {
+      throw new Error('Foo');
+    });
+    let profileQuery = await request.get('/api/users/top');
+    expect(profileQuery.status).toEqual(500);
+
+    User.find = oldUser;
+    console.error = oldConsole;
+  });
+
+});
