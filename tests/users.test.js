@@ -55,7 +55,7 @@ describe('Users', () => {
     let performer = new Performer({});
     let savedPerformer = await performer.save();
     let createdUser = await user.save();
-    await createdUser.buy({performer: savedPerformer.id, quantity: 1});
+    await createdUser.buy({ performer: savedPerformer.id, quantity: 1 });
     let updatedUser = await User.findById(createdUser.id);
     expect(updatedUser.shares[0].performer.toString()).toEqual(
       savedPerformer.id
@@ -173,27 +173,25 @@ describe('Users', () => {
         username: 'kenneth1',
         email: 'kenneth1@biz.com',
         password: 'partario',
-        balance: 2000
+        balance: 2000,
       });
       let user2 = new User({
         username: 'kenneth2',
         email: 'kenneth2@biz.com',
         password: 'partario',
-        balance: 4000
+        balance: 4000,
       });
       let user3 = new User({
         username: 'kenneth3',
         email: 'kenneth3@biz.com',
         password: 'partario',
-        balance: 3000
+        balance: 3000,
       });
       let createdUser1 = await user1.save();
       let createdUser2 = await user2.save();
       let createdUser3 = await user3.save();
-      let profileQuery = await request.get(
-        '/api/users/top'
-      );
-      expect(profileQuery.status).toEqual(200)
+      let profileQuery = await request.get('/api/users/top');
+      expect(profileQuery.status).toEqual(200);
       expect(profileQuery.body[0]._id).toEqual(createdUser2.id);
     });
     it('Returns an error if there is a database failure', async () => {
@@ -209,20 +207,77 @@ describe('Users', () => {
       console.error = oldConsole;
     });
   });
-  
+
   it('stops you selling if the performer is on timeout', async () => {
     let user = new User({
       username: 'kenneth',
       email: 'kenneth@biz.com',
       password: 'partario',
     });
-    let performer = new Performer({timeout: 1});
+    let performer = new Performer({ timeout: 1 });
     let savedPerformer = await performer.save();
     let createdUser = await user.save();
     await createdUser.buy({ performer: savedPerformer.id, quantity: 1 });
     await expect(
-      createdUser.sell({performer: savedPerformer.id, quantity: 1 })
-    ).rejects.toEqual(new Error("You can't sell a performer whilst they cannot stream!"));
+      createdUser.sell({ performer: savedPerformer.id, quantity: 1 })
+    ).rejects.toEqual(
+      new Error("You can't sell a performer whilst they cannot stream!")
+    );
   });
 
+  describe('Shares', () => {
+    describe('POST /:id/:amount/buy', () => {
+      it('allows an authenticated user to buy a valid amount of shares', async () => {
+        let examplePerformer = new Performer({});
+        let savedPerformer = await examplePerformer.save();
+
+        await createValidUser();
+        let successfulLogin = await request
+          .post('/api/auth')
+          .send({
+            email: 'kenneth@biz.com',
+            password: 'partario',
+          })
+          .set('Accept', 'application/json');
+
+        let sharePurchase = await request
+          .post(`/api/shares/${savedPerformer.id}/1/buy`)
+          .set('x-auth-token', successfulLogin.body.token);
+
+        expect(sharePurchase.status).toEqual(200);
+        let users = await User.find({});
+        expect(users[0].shares.length).toEqual(1);
+        expect(users[0].transactions.length).toEqual(1);
+      });
+    });
+
+    describe('POST /:id/:amount/sell', () => {
+      it('allows an authenticated user to buy a valid amount of shares', async () => {
+        let examplePerformer = new Performer({});
+        let savedPerformer = await examplePerformer.save();
+
+        await createValidUser();
+        let successfulLogin = await request
+          .post('/api/auth')
+          .send({
+            email: 'kenneth@biz.com',
+            password: 'partario',
+          })
+          .set('Accept', 'application/json');
+
+        let sharePurchase = await request
+          .post(`/api/shares/${savedPerformer.id}/1/buy`)
+          .set('x-auth-token', successfulLogin.body.token);
+
+        let shareSale = await request
+          .post(`/api/shares/${savedPerformer.id}/1/sell`)
+          .set('x-auth-token', successfulLogin.body.token);
+
+        expect(shareSale.status).toEqual(200);
+        let users = await User.find({});
+        expect(users[0].shares.length).toEqual(0);
+        expect(users[0].transactions.length).toEqual(2);
+      });
+    });
+  });
 });

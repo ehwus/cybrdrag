@@ -3,6 +3,7 @@ const PerformanceHistory = require('./PerformanceHistory');
 const Event = require('./Event');
 const randomName = require('./helper/randomName');
 const randomEvent = require('./helper/randomEvent');
+const TRAITS = require('./helper/traits');
 
 const PerformerSchema = new mongoose.Schema({
   name: {
@@ -25,6 +26,12 @@ const PerformerSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  traits: [
+    {
+      type: String,
+      default: [],
+    },
+  ],
 });
 
 PerformerSchema.methods.perform = async function () {
@@ -33,6 +40,9 @@ PerformerSchema.methods.perform = async function () {
   let savedPerformance;
 
   if (isEventTriggered) {
+    // work out if event is countered by performer
+    if (!isEventTriggered.counters.some((x) => this.traits.includes(x))) return;
+
     if (isEventTriggered.multiplier) multiplier = isEventTriggered.multiplier;
     if (isEventTriggered.timeout) this.timeout += isEventTriggered.timeout;
 
@@ -76,6 +86,20 @@ PerformerSchema.pre('save', async function () {
 
   if (this.avatar === null) {
     this.avatar = `https://avatars.dicebear.com/api/female/${this.id}.svg`;
+  }
+
+  if (this.traits.length === 0) {
+    let i = 0;
+    let options = Object.keys(TRAITS).length;
+    while (i < 3) {
+      let randomTrait = Object.keys(TRAITS)[
+        Math.floor(Math.random() * options)
+      ];
+      if (!this.traits.includes(randomTrait)) {
+        this.traits.push(randomTrait);
+        i++;
+      }
+    }
   }
 });
 

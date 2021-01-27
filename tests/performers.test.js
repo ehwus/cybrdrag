@@ -11,6 +11,12 @@ afterEach(async () => await dbHandler.clearDatabase());
 afterAll(async () => await dbHandler.closeDatabase());
 
 describe('Performers', () => {
+  it('Initializes with three random, unique traits', async () => {
+    let performer = new Performer({});
+    let savedPerformer = await performer.save();
+    expect(savedPerformer.traits.length).toEqual(3);
+  });
+
   describe('Performers names', () => {
     it('Initializes with a randomly generated name', async () => {
       for (let i = 0; i < 100; i++) {
