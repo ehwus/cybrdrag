@@ -40,6 +40,9 @@ PerformerSchema.methods.perform = async function () {
   let savedPerformance;
 
   if (isEventTriggered) {
+    // work out if event is countered by performer
+    if (!isEventTriggered.counters.some((x) => this.traits.includes(x))) return;
+
     if (isEventTriggered.multiplier) multiplier = isEventTriggered.multiplier;
     if (isEventTriggered.timeout) this.timeout += isEventTriggered.timeout;
 

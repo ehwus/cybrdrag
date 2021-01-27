@@ -14,7 +14,6 @@ describe('Performers', () => {
   it('Initializes with three random, unique traits', async () => {
     let performer = new Performer({});
     let savedPerformer = await performer.save();
-    console.log(savedPerformer);
     expect(savedPerformer.traits.length).toEqual(3);
   });
 
