@@ -15,37 +15,35 @@ const PerformerSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
-  performancehistory: {
-    type: [
-      {
-        netearned: {
+  performancehistory: [
+    {
+      netearned: {
+        type: Number,
+        required: true,
+      },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+      event: {
+        type: Object,
+        default: null,
+        name: {
+          type: String,
+        },
+        webdescription: {
+          type: String,
+        },
+        timeout: {
           type: Number,
-          required: true,
         },
-        date: {
-          type: Date,
-          default: Date.now,
-        },
-        event: {
-          type: Object,
-          default: null,
-          name: {
-            type: String,
-          },
-          webdescription: {
-            type: String,
-          },
-          timeout: {
-            type: Number,
-          },
-          multiplier: {
-            type: Number,
-          },
+        multiplier: {
+          type: Number,
         },
       },
-    ],
-    default: [],
-  },
+    },
+  ],
+  default: [],
   costperperformance: {
     type: Number,
     default: 100,
