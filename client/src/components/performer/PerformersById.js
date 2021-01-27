@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getPerformersById } from '../../actions/performers';
 import PerformerProfile from './PerformerProfile';
 import { getHistoryById } from '../../actions/performers';
+import PerformersHistoryById from "../performerHistory/PerformerHistory";
 
 const PerformersById = ({
   getPerformersById,
@@ -14,12 +15,14 @@ const PerformersById = ({
   useEffect(() => {
     getPerformersById(match.params.id);
   }, [getPerformersById, match.params.id]);
+  console.log(match);
   return (
     <div className='container'>
       <h1 className='authstate'>
         <PerformerProfile
           key={performers._id}
           performer={performers}/>
+        <PerformersHistoryById match={match}/>
       </h1>
     </div>
   );
