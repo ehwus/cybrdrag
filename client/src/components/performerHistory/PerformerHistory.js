@@ -5,22 +5,21 @@ import { getHistoryById } from '../../actions/performers';
 import HistoryCard from "./HistoryCard";
 
 const PerformersHistoryById = ({getHistoryById,
-                          history,
+                          history: { performances },
                           match,
                         }) => {
   useEffect(() => {
     getHistoryById(match.params.id);
   }, [getHistoryById, match.params.id]);
 
-  console.log(history);
   return (
     <Fragment>
     <div className='container'>
       <h1 className='authstate'>
           This is a test page
-        {/*{history.map((history, i) => (*/}
-        {/*  <HistoryCard key={i} history={history}/>*/}
-        {/*))}*/}
+        {performances.map((performance) => (
+          <HistoryCard key={performance._id} performances={performance}/>
+        ))}
       </h1>
 
     </div>
@@ -33,7 +32,7 @@ PerformersHistoryById.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  performers: state.performers,
+  history: state.history,
 });
 
 export default connect(mapStateToProps, { getHistoryById })(

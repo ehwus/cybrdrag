@@ -2,25 +2,24 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
 
-const HistoryCard = (history) => {
+const HistoryCard = (performances) => {
+  console.log(performances)
   return (
     <Fragment>
       <div className='performerCard'>
-        <h1>Is this displaying?</h1>
-        <h1>
-          {console.log(history)}
-          {history.netearned}
-        </h1>
-        <h1>
-          {history.date}
-        </h1>
+        <h5>
+          Performance earnings: {performances.performances.netearned}<i className='fas fa-dice-d20'></i>
+        </h5>
+        <h5>
+          Performance time: {performances.performances.date}
+        </h5>
       </div>
     </Fragment>
   );
 };
 
 HistoryCard.propTypes = {
-  history: PropTypes.object.isRequired,
+  performances: PropTypes.object.isRequired,
 };
 
 export default HistoryCard;
