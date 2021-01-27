@@ -24,6 +24,9 @@ const PerformersById = ({
           performer={performers}/>
         <PerformersHistoryById match={match}/>
       </h1>
+      <form action="/performers" className="purpleButton">
+      <button class="float-left submit-button" >Go Back</button>
+    </form>
     </div>
   );
 };
