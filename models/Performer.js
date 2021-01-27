@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const PerformanceHistory = require('./PerformanceHistory');
 const randomName = require('./helper/randomName');
 const randomEvent = require('./helper/randomEvent');
 
@@ -15,35 +16,6 @@ const PerformerSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
-  performancehistory: [
-    {
-      netearned: {
-        type: Number,
-        required: true,
-      },
-      date: {
-        type: Date,
-        default: Date.now,
-      },
-      event: {
-        type: Object,
-        default: null,
-        name: {
-          type: String,
-        },
-        webdescription: {
-          type: String,
-        },
-        timeout: {
-          type: Number,
-        },
-        multiplier: {
-          type: Number,
-        },
-      },
-    },
-  ],
-  default: [],
   costperperformance: {
     type: Number,
     default: 100,
@@ -66,17 +38,19 @@ PerformerSchema.methods.perform = async function () {
   if (this.timeout != 0) {
     let netRevenue = -this.costperperformance;
     this.timeout -= 1;
-    this.performancehistory.push({
-      netearned: netRevenue,
-      event: isEventTriggered,
-    });
+
     this.worth += netRevenue;
   } else {
     let netRevenue = Performer.calculateEarning() - this.costperperformance;
-    this.performancehistory.push({
-      netearned: netRevenue,
-    });
+
     this.worth += netRevenue;
+
+    let performance = new PerformanceHistory({
+      netearned: netRevenue,
+      performer: this.id,
+    });
+
+    await performance.save();
   }
   await this.save();
 };
