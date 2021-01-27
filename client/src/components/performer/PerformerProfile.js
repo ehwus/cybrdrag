@@ -14,9 +14,6 @@ const PerformerProfile = ({ performer: { _id, name, worth, avatar } }) => {
         </h1>
         <div className='performerName'></div>
       </div>
-      {/* {history.map((history) => {
-        return <div>{history.netearned}</div>;
-      })} */}
     </Fragment>
   );
 };

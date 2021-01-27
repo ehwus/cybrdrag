@@ -1,7 +1,6 @@
 import { GET_HISTORY, HISTORY_ERROR } from '../actions/types';
 
 const initialState = {
-  history: [],
   loading: true,
   errors: {},
 };
@@ -13,7 +12,7 @@ function historyReducer(state = initialState, action) {
     case GET_HISTORY:
       return {
         ...state,
-        history: payload,
+        ...payload,
         loading: false,
       };
     case HISTORY_ERROR:

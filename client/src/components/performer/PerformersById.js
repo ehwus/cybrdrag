@@ -7,23 +7,19 @@ import { getHistoryById } from '../../actions/performers';
 
 const PerformersById = ({
   getPerformersById,
-  getHistoryById,
   performers: { performers },
   history: { history },
   match,
 }) => {
   useEffect(() => {
-    getHistoryById(match.params.id);
     getPerformersById(match.params.id);
-  }, [getPerformersById, match.params.id, getHistoryById]);
+  }, [getPerformersById, match.params.id]);
   return (
     <div className='container'>
       <h1 className='authstate'>
         <PerformerProfile
           key={performers._id}
-          performer={performers}
-          history={history}
-        />
+          performer={performers}/>
       </h1>
     </div>
   );
@@ -38,6 +34,6 @@ const mapStateToProps = (state) => ({
   performers: state.performers,
 });
 
-export default connect(mapStateToProps, { getPerformersById, getHistoryById })(
+export default connect(mapStateToProps, { getPerformersById })(
   PerformersById
 );
