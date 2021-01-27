@@ -7,8 +7,8 @@ import {
 const initialState = {
   performers: [],
   loading: true,
-  errors: {}
-}
+  errors: {},
+};
 
 function performerReducer(state = initialState, action) {
   const { type, payload } = action;
@@ -18,20 +18,20 @@ function performerReducer(state = initialState, action) {
       return {
         ...state,
         performers: payload,
-        loading: false
+        loading: false,
       };
     case GET_PERFORMERS:
       return {
         ...state,
         performers: payload,
-        loading: false
+        loading: false,
       };
     case PERFORMERS_ERROR:
       return {
         ...state,
         error: payload,
         loading: false,
-        performer: null
+        performer: null,
       };
     default:
       return state;

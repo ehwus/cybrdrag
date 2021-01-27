@@ -1,10 +1,12 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import alert from './alert';
-import auth from "./auth";
-import performers from "./performers";
+import auth from './auth';
+import performers from './performers';
+import history from './history';
 
 export default combineReducers({
   alert,
   auth,
-  performers
+  performers,
+  history,
 });
