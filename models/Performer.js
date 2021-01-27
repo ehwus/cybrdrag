@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const PerformanceHistory = require('./PerformanceHistory');
+const Event = require('./Event');
 const randomName = require('./helper/randomName');
 const randomEvent = require('./helper/randomEvent');
 
@@ -15,37 +17,6 @@ const PerformerSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
-  performancehistory: {
-    type: [
-      {
-        netearned: {
-          type: Number,
-          required: true,
-        },
-        date: {
-          type: Date,
-          default: Date.now,
-        },
-        event: {
-          type: Object,
-          default: null,
-          name: {
-            type: String,
-          },
-          webdescription: {
-            type: String,
-          },
-          timeout: {
-            type: Number,
-          },
-          multiplier: {
-            type: Number,
-          },
-        },
-      },
-    ],
-    default: [],
-  },
   costperperformance: {
     type: Number,
     default: 100,
@@ -59,26 +30,37 @@ const PerformerSchema = new mongoose.Schema({
 PerformerSchema.methods.perform = async function () {
   let multiplier = 1;
   let isEventTriggered = randomEvent();
+  let savedPerformance;
 
   if (isEventTriggered) {
     if (isEventTriggered.multiplier) multiplier = isEventTriggered.multiplier;
     if (isEventTriggered.timeout) this.timeout += isEventTriggered.timeout;
+
+    let event = new Event({
+      performer: this.id,
+      name: isEventTriggered.name,
+      webdescription: isEventTriggered.webdescription,
+    });
+
+    await event.save();
   }
 
   if (this.timeout != 0) {
     let netRevenue = -this.costperperformance;
     this.timeout -= 1;
-    this.performancehistory.push({
-      netearned: netRevenue,
-      event: isEventTriggered,
-    });
+
     this.worth += netRevenue;
   } else {
     let netRevenue = Performer.calculateEarning() - this.costperperformance;
-    this.performancehistory.push({
-      netearned: netRevenue,
-    });
+
     this.worth += netRevenue;
+
+    let performance = new PerformanceHistory({
+      netearned: netRevenue,
+      performer: this.id,
+    });
+
+    performance.save();
   }
   await this.save();
 };

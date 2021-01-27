@@ -1,19 +1,24 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const EventSchema = new mongoose.Schema({
+  performer: {
+    type: Schema.Types.ObjectId,
+    ref: 'performer',
+    required: true,
+  },
   name: {
     type: String,
-    required: true
+    required: true,
   },
+  webdescription: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now(),
+  },
+});
 
-  counters: {
-    type: [
-      name: {
-        type: String,
-        required: true
-      }
-    ],
-    default: []
-  },
-  
-})
+module.exports = Event = mongoose.model('event', EventSchema);

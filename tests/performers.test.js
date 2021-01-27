@@ -4,6 +4,7 @@ const request = supertest(app);
 require('dotenv').config();
 const dbHandler = require('./db-handler');
 const Performer = require('../models/Performer');
+const PerformanceHistory = require('../models/PerformanceHistory');
 
 beforeAll(async () => await dbHandler.connect());
 afterEach(async () => await dbHandler.clearDatabase());
@@ -27,8 +28,8 @@ describe('Performers', () => {
       let performer = new Performer({});
       let savedPerformer = await performer.save();
       await savedPerformer.perform();
-      let updatedPerformer = await Performer.findById(savedPerformer.id);
-      expect(updatedPerformer.performancehistory.length).toBe(1);
+      let allPerformances = await PerformanceHistory.find({});
+      expect(allPerformances.length).toBe(1);
     });
 
     it('Gives a net performance amount that takes costs into consideration', async () => {
@@ -40,8 +41,8 @@ describe('Performers', () => {
       let performer = new Performer({});
       let savedPerformer = await performer.save();
       await savedPerformer.perform();
-      let updatedPerformer = await Performer.findById(savedPerformer.id);
-      expect(updatedPerformer.performancehistory[0].netearned).toEqual(0);
+      let performancehistory = await PerformanceHistory.find({});
+      expect(performancehistory[0].netearned).toEqual(0);
 
       Performer.calculateEarning = performanceEarningsFunction;
     });
@@ -91,8 +92,8 @@ describe('Performers', () => {
       await savedPerformer.perform();
       await savedPerformer.perform();
 
-      expect(savedPerformer.worth).toEqual(1800)
-    })
+      expect(savedPerformer.worth).toEqual(1800);
+    });
 
     it('if a performer then leaves timeout they earn money again', async () => {
       let performer = await new Performer({ timeout: 2 });
@@ -102,9 +103,9 @@ describe('Performers', () => {
       await savedPerformer.perform();
       await savedPerformer.perform();
 
-      expect(savedPerformer.worth).not.toEqual(1800)
-    })
-  })
+      expect(savedPerformer.worth).not.toEqual(1800);
+    });
+  });
 
   describe('GET /:id', () => {
     it('Returns a performer object when searched for by id', async () => {
@@ -132,7 +133,6 @@ describe('Performers', () => {
     });
   });
 
-
   describe('#statics.allPerform', () => {
     it('makes all performers perform', async () => {
       let performer1 = await new Performer({});
@@ -145,36 +145,29 @@ describe('Performers', () => {
       let savedPerformer3 = await performer3.save();
 
       await Performer.allPerform();
-      let performerList = await Performer.find({})
-
-      expect(performerList[0].performancehistory.length).toEqual(1)
-      expect(performerList[1].performancehistory.length).toEqual(1)
-      expect(performerList[2].performancehistory.length).toEqual(1)
-
+      let performanceHistory = await PerformanceHistory.find({});
+      expect(performanceHistory.length).toBeGreaterThan(1);
     });
   });
 
-  
   describe('GET /top', () => {
     it('Returns a performer list sorted by worth', async () => {
-      let performer1 = await new Performer({worth: 1000});
+      let performer1 = await new Performer({ worth: 1000 });
       let savedPerformer1 = await performer1.save();
 
-      let performer2 = await new Performer({worth: 4000});
+      let performer2 = await new Performer({ worth: 4000 });
       let savedPerformer2 = await performer2.save();
 
-      let performer3 = await new Performer({worth: 3000});
+      let performer3 = await new Performer({ worth: 3000 });
       let savedPerformer3 = await performer3.save();
 
-      let performer4 = await new Performer({worth: 2500});
+      let performer4 = await new Performer({ worth: 2500 });
       let savedPerformer4 = await performer4.save();
 
-      let performer5 = await new Performer({worth: 3500});
+      let performer5 = await new Performer({ worth: 3500 });
       let savedPerformer5 = await performer5.save();
 
-      let profileQuery = await request.get(
-        '/api/performers/top'
-      );
+      let profileQuery = await request.get('/api/performers/top');
       expect(profileQuery.status).toEqual(200);
       expect(profileQuery.body[0]._id).toBe(savedPerformer2.id);
     });
@@ -191,7 +184,6 @@ describe('Performers', () => {
 
       Performer.find = oldPerformer;
       console.error = oldConsole;
-
     });
   });
 });

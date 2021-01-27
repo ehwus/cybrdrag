@@ -1,6 +1,10 @@
 const TRAITS = require('../models/helper/traits');
 const possibleEvents = require('../models/helper/possibleEvents');
 const Performer = require('../models/Performer');
+const Event = require('../models/Event');
+const app = require('../server');
+const supertest = require('supertest');
+const request = supertest(app);
 require('dotenv').config();
 const dbHandler = require('./db-handler');
 
@@ -50,14 +54,22 @@ describe('Events', () => {
       await performer.perform();
     }
 
-    let updatedPerformer = await Performer.findById(savedPerformer.id);
-    let eventsEncountered = [];
-    for (let performance of updatedPerformer.performancehistory) {
-      eventsEncountered.push(performance.event);
-    }
+    let allEvents = await Event.find({});
+    expect(allEvents.length).toBeGreaterThan(0);
+  });
 
-    expect(eventsEncountered.filter((e) => e != null).length).toBeGreaterThan(
-      0
-    );
+  describe('GET /', () => {
+    it('Returns all events', async () => {
+      let performer = new Performer({ worth: 99999 });
+      await performer.save();
+      let event = new Event({
+        performer: performer.id,
+        name: 'foo',
+        webdescription: 'foo',
+      });
+      let savedEvent = await event.save();
+      let profileQuery = await request.get('/api/events');
+      expect(profileQuery.body[0]._id).toEqual(savedEvent.id);
+    });
   });
 });

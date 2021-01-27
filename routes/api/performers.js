@@ -23,14 +23,13 @@ router.get('/', async (req, res) => {
 
 router.get('/top', async (req, res) => {
   try {
-    const performers = await Performer.find({}).sort( { worth: -1 } );
+    const performers = await Performer.find({}).sort({ worth: -1 });
     res.json(performers);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
 });
-
 
 // @route GET api/performers/id
 // @desc Get individual performer object by id
@@ -40,6 +39,19 @@ router.get('/:id', async (req, res) => {
   try {
     const performer = await Performer.findById(req.params.id);
     res.json(performer);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route GET api/performers/history/id
+// @desc Get individual performer history by id
+// @access Public
+router.get('/history/:id', async (req, res) => {
+  try {
+    const history = await PerformanceHistory.find({ performer: req.params.id });
+    res.json(history);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
