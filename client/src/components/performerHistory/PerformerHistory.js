@@ -11,15 +11,18 @@ const PerformersHistoryById = ({getHistoryById,
   useEffect(() => {
     getHistoryById(match.params.id);
   }, [getHistoryById, match.params.id]);
+
+  console.log(history);
   return (
     <Fragment>
     <div className='container'>
       <h1 className='authstate'>
           This is a test page
-        {Object.entries(history).map(([key, history], i) => (
-          <HistoryCard key={i} history={history}/>
-        ))}
+        {/*{history.map((history, i) => (*/}
+        {/*  <HistoryCard key={i} history={history}/>*/}
+        {/*))}*/}
       </h1>
+
     </div>
     </Fragment>
   );
