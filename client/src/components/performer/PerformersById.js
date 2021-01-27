@@ -5,6 +5,10 @@ import { getPerformersById } from '../../actions/performers';
 import PerformerProfile from './PerformerProfile';
 import { getHistoryById } from '../../actions/performers';
 import PerformersHistoryById from "../performerHistory/PerformerHistory";
+import BuyButton from "../Buttons/BuyButton";
+import SellButton from "../Buttons/SellButton";
+import GoBack from "../Buttons/GoBack";
+
 
 const PerformersById = ({
   getPerformersById,
@@ -22,11 +26,11 @@ const PerformersById = ({
         <PerformerProfile
           key={performers._id}
           performer={performers}/>
+          <BuyButton/>
+          <SellButton/>
         <PerformersHistoryById match={match}/>
       </h1>
-      <form action="/performers" className="purpleButton">
-      <button class="float-left submit-button" >Go Back</button>
-    </form>
+      <GoBack/>
     </div>
   );
 };
