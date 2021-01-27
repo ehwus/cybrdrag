@@ -41,8 +41,8 @@ describe('Performers', () => {
       let performer = new Performer({});
       let savedPerformer = await performer.save();
       await savedPerformer.perform();
-      let updatedPerformer = await Performer.findById(savedPerformer.id);
-      expect(updatedPerformer.performancehistory[0].netearned).toEqual(0);
+      let performancehistory = await PerformanceHistory.find({});
+      expect(performancehistory[0].netearned).toEqual(0);
 
       Performer.calculateEarning = performanceEarningsFunction;
     });
@@ -145,11 +145,8 @@ describe('Performers', () => {
       let savedPerformer3 = await performer3.save();
 
       await Performer.allPerform();
-      let performerList = await Performer.find({});
-
-      expect(performerList[0].performancehistory.length).toEqual(1);
-      expect(performerList[1].performancehistory.length).toEqual(1);
-      expect(performerList[2].performancehistory.length).toEqual(1);
+      let performanceHistory = await PerformanceHistory.find({});
+      expect(performanceHistory.length).toBeGreaterThan(1);
     });
   });
 
