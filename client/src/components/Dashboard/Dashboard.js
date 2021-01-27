@@ -1,6 +1,8 @@
 import React from 'react';
 import PerformerCard from '../performers/PerformerCard';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import ShowAllButton from '../Buttons/ShowAllButton';
+
 
 let testPerformer = {
   name: `Testy O'Sterone`,
@@ -15,6 +17,7 @@ const Dashboard = (props) => {
         Test Dashboard at components/dashboard/dashboard.js
       </h1>
       <PerformerCard performer={testPerformer} />
+      <ShowAllButton />
     </div>
   );
 };

@@ -7,7 +7,7 @@ import { getHistoryById } from '../../actions/performers';
 import PerformersHistoryById from "../performerHistory/PerformerHistory";
 import BuyButton from "../Buttons/BuyButton";
 import SellButton from "../Buttons/SellButton";
-import GoBack from "../Buttons/GoBack";
+import ShowAllButton from "../Buttons/ShowAllButton";
 
 
 const PerformersById = ({
@@ -30,7 +30,7 @@ const PerformersById = ({
           <SellButton/>
         <PerformersHistoryById match={match}/>
       </h1>
-      <GoBack/>
+      <ShowAllButton/>
     </div>
   );
 };
