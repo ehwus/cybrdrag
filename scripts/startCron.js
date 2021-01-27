@@ -6,7 +6,6 @@ const startChron = () => {
     '0 * * * *',
     () => {
       Performers.allPerform();
-      console.log('Foo');
     },
     null,
     true,
