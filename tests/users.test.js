@@ -250,5 +250,34 @@ describe('Users', () => {
         expect(users[0].transactions.length).toEqual(1);
       });
     });
+
+    describe('POST /:id/:amount/sell', () => {
+      it('allows an authenticated user to buy a valid amount of shares', async () => {
+        let examplePerformer = new Performer({});
+        let savedPerformer = await examplePerformer.save();
+
+        await createValidUser();
+        let successfulLogin = await request
+          .post('/api/auth')
+          .send({
+            email: 'kenneth@biz.com',
+            password: 'partario',
+          })
+          .set('Accept', 'application/json');
+
+        let sharePurchase = await request
+          .post(`/api/shares/${savedPerformer.id}/1/buy`)
+          .set('x-auth-token', successfulLogin.body.token);
+
+        let shareSale = await request
+          .post(`/api/shares/${savedPerformer.id}/1/sell`)
+          .set('x-auth-token', successfulLogin.body.token);
+
+        expect(shareSale.status).toEqual(200);
+        let users = await User.find({});
+        expect(users[0].shares.length).toEqual(0);
+        expect(users[0].transactions.length).toEqual(2);
+      });
+    });
   });
 });
