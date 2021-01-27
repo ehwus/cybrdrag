@@ -1,6 +1,7 @@
 const TRAITS = require('../models/helper/traits');
 const possibleEvents = require('../models/helper/possibleEvents');
 const Performer = require('../models/Performer');
+const Event = require('../models/Event');
 require('dotenv').config();
 const dbHandler = require('./db-handler');
 
@@ -50,14 +51,7 @@ describe('Events', () => {
       await performer.perform();
     }
 
-    let updatedPerformer = await Performer.findById(savedPerformer.id);
-    let eventsEncountered = [];
-    for (let performance of updatedPerformer.performancehistory) {
-      eventsEncountered.push(performance.event);
-    }
-
-    expect(eventsEncountered.filter((e) => e != null).length).toBeGreaterThan(
-      0
-    );
+    let allEvents = await Event.find({});
+    expect(allEvents.length).toBeGreaterThan(0);
   });
 });
