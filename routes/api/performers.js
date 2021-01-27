@@ -9,7 +9,7 @@ const Performer = require('../../models/Performer');
 // @access  Public
 router.get('/', async (req, res) => {
   try {
-    const performers = await Performer.find(req.performers);
+    const performers = await Performer.find(req.performers).sort({ worth: -1 });
     res.json(performers);
   } catch (err) {
     console.error(err.message);
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 });
 
 // @route   GET api/performers/top
-// @desc    Get all performers sorted by worth
+// @desc    Get all performers sorted by worth - Not in use for now
 // @access  Public
 
 router.get('/top', async (req, res) => {

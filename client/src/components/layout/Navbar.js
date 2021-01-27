@@ -24,7 +24,8 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
   return (
     <nav>
       <h1 className='logo'>
-        <i className='fas fa-dice-d20'></i>CYBRDRAG
+        <i className='fas fa-dice-d20'>
+          </i><form action="/dashboard"><input type='submit' value='CYBRDRAG'></input></form>
       </h1>
       {!loading && (<Fragment>{isAuthenticated ? authlinks : guestlinks}</Fragment>)}
     </nav>

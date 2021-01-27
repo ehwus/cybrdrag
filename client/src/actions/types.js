@@ -13,3 +13,5 @@ export const PERFORMERS_ERROR = 'PERFORMERS_ERROR';
 export const CLEAR_PERFORMER = 'CLEAR_PERFORMER';
 export const GET_HISTORY = 'GET_HISTORY';
 export const HISTORY_ERROR = 'HISTORY_ERROR';
+export const GET_EVENTS = 'GET_EVENTS';
+export const EVENTS_ERROR = 'EVENTS_ERROR';
