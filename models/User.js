@@ -73,7 +73,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.methods.buy = async function (share) {
-  const {performer, quantity} = share;
+  const { performer, quantity } = share;
   let performerObject = await Performer.findById(performer);
 
   let price = Math.floor(performerObject.worth * 0.01);
@@ -95,9 +95,9 @@ UserSchema.methods.buy = async function (share) {
 UserSchema.methods.sell = async function (share) {
   const { performer, quantity } = share;
   let performerObject = await Performer.findById(performer);
-  if(performerObject.timeout != 0) {
-    throw new Error("You can't sell a performer whilst they cannot stream!")
-  } 
+  if (performerObject.timeout != 0) {
+    throw new Error("You can't sell a performer whilst they cannot stream!");
+  }
   let price = Math.floor(performerObject.worth * 0.01);
 
   let target = this.shares.filter(
@@ -130,9 +130,6 @@ UserSchema.methods.sell = async function (share) {
 };
 
 UserSchema.methods.addTransaction = async function (transaction) {
-  // const { type, performer, quantity, pricepershare } = transaction;
-  // let newTransaction = new transaction(transaction);
-  // await transaction.save();
   this.transactions.push(transaction);
 
   await this.save();
