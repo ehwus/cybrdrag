@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const PerformanceHistory = require('./PerformanceHistory');
+const Event = require('./Event');
 const randomName = require('./helper/randomName');
 const randomEvent = require('./helper/randomEvent');
 
@@ -29,10 +30,19 @@ const PerformerSchema = new mongoose.Schema({
 PerformerSchema.methods.perform = async function () {
   let multiplier = 1;
   let isEventTriggered = randomEvent();
+  let savedPerformance;
 
   if (isEventTriggered) {
     if (isEventTriggered.multiplier) multiplier = isEventTriggered.multiplier;
     if (isEventTriggered.timeout) this.timeout += isEventTriggered.timeout;
+
+    let event = new Event({
+      performer: this.id,
+      name: isEventTriggered.name,
+      webdescription: isEventTriggered.webdescription,
+    });
+
+    await event.save();
   }
 
   if (this.timeout != 0) {
@@ -50,7 +60,7 @@ PerformerSchema.methods.perform = async function () {
       performer: this.id,
     });
 
-    await performance.save();
+    performance.save();
   }
   await this.save();
 };
