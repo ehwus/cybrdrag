@@ -7,11 +7,6 @@ const EventSchema = new mongoose.Schema({
     ref: 'performer',
     required: true,
   },
-  performance: {
-    type: Schema.Types.ObjectId,
-    ref: 'performance',
-    required: true,
-  },
   name: {
     type: String,
     required: true,
@@ -21,3 +16,5 @@ const EventSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+module.exports = Event = mongoose.model('event', EventSchema);
