@@ -61,7 +61,7 @@ describe('Events', () => {
   describe('GET /', () => {
     it('Returns all events', async () => {
       let performer = new Performer({ worth: 99999 });
-      let savedPerformer = await performer.save();
+      await performer.save();
       let event = new Event({
         performer: performer.id,
         name: 'foo',
