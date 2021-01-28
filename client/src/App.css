@@ -196,3 +196,13 @@ nav {
   font-size: 21px;
   color: #defe47;
 }
+
+.allPerformers {
+  height: 600px;
+  overflow: auto;
+}
+
+.allPerformers .performerCard {
+  margin: 0 auto;
+  max-width: 600px;
+}
