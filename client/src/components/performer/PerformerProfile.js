@@ -1,19 +1,24 @@
-import React, { Fragment } from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-const PerformerProfile = ({ performer: { _id, name, worth, avatar } }) => {
+const PerformerProfile = ({performer: {_id, name, worth, avatar}, loading}) => {
   return (
     <Fragment>
-      <div className='performerCard'>
-        <img src={avatar} className='performerAvatar' alt='Avatar'></img>
-        <div className='performerName'>{name}</div>
-        <h1 className='performerWorth'>
-          {worth}
-          <i className='fas fa-dice-d20'></i>
-        </h1>
-        <div className='performerName'></div>
-      </div>
+      {loading ? (
+        <h1> Loading </h1>) : (
+        <Fragment>
+          <div className='performerCard'>
+            <img src={avatar} className='performerAvatar' alt='Avatar'></img>
+            <div className='performerName'>{name}</div>
+            <h1 className='performerWorth'>
+              {worth}
+              <i className='fas fa-dice-d20'></i>
+            </h1>
+            <div className='performerName'></div>
+          </div>
+        </Fragment>
+      )}
     </Fragment>
   );
 };
