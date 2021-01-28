@@ -206,3 +206,17 @@ nav {
   margin: 0 auto;
   max-width: 600px;
 }
+
+.landingBox {
+  opacity: 0.9;
+  background: #7700a6;
+  border: 3px solid #fe00fe;
+  border-radius: 34px;
+  width: 40%;
+  min-width: 300px;
+  font-family: monospace;
+  font-size: 21px;
+  color: #defe47;
+  text-align: center;
+  margin: 0 auto;
+}
