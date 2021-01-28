@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 import { getPerformersById } from '../../actions/performers';
 import PerformerProfile from './PerformerProfile';
 import { getHistoryById } from '../../actions/performers';
-import PerformersHistoryById from "../performerHistory/PerformerHistory";
-import BuyButton from "../Buttons/BuyButton";
-import SellButton from "../Buttons/SellButton";
-import ShowAllButton from "../Buttons/ShowAllButton";
-
+import PerformersHistoryById from '../performerHistory/PerformerHistory';
+import BuyButton from '../Buttons/BuyButton';
+import SellButton from '../Buttons/SellButton';
+import ShowAllButton from '../Buttons/ShowAllButton';
 
 const PerformersById = ({
   getPerformersById,
@@ -22,15 +21,12 @@ const PerformersById = ({
   console.log(match);
   return (
     <div className='container'>
-      <h1 className='authstate'>
-        <PerformerProfile
-          key={performers._id}
-          performer={performers}/>
-          <BuyButton/>
-          <SellButton/>
-        <PerformersHistoryById match={match}/>
-      </h1>
-      <ShowAllButton/>
+      <PerformerProfile key={performers._id} performer={performers} />
+      <div class='buyAndSellButtons'>
+        <button class='purpleButton'>Buy</button>
+        <button class='purpleButton'>Sell</button>
+      </div>
+      <PerformersHistoryById match={match} />
     </div>
   );
 };
@@ -44,6 +40,4 @@ const mapStateToProps = (state) => ({
   performers: state.performers,
 });
 
-export default connect(mapStateToProps, { getPerformersById })(
-  PerformersById
-);
+export default connect(mapStateToProps, { getPerformersById })(PerformersById);

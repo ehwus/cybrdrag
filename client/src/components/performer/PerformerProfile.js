@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const PerformerProfile = ({ performer: { _id, name, worth, avatar } }) => {
   return (
-    <Fragment>
+    <div className='performerProfile'>
       <div className='performerCard'>
         <img src={avatar} className='performerAvatar' alt='Avatar'></img>
         <div className='performerName'>{name}</div>
@@ -14,7 +14,7 @@ const PerformerProfile = ({ performer: { _id, name, worth, avatar } }) => {
         </h1>
         <div className='performerName'></div>
       </div>
-    </Fragment>
+    </div>
   );
 };
 
