@@ -12,6 +12,7 @@ export const buyShares = (performerID) => async (
     dispatch({
       type: BUY_SHARE,
     });
+    dispatch(setAlert("Share Purchased", "danger"));
   } catch (err) {
     const errors = err.response.data.errors;
     console.log(err)
@@ -34,6 +35,7 @@ export const sellShares = (performerID) => async (
     dispatch({
       type: SELL_SHARE,
     });
+    dispatch(setAlert("Share Sold", "danger"));
   } catch (err) {
     const errors = err.response.data.errors;
 
