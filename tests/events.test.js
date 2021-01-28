@@ -66,6 +66,8 @@ describe('Events', () => {
         performer: performer.id,
         name: 'foo',
         webdescription: 'foo',
+        performername: 'foo',
+        avatar: 'foo',
       });
       let savedEvent = await event.save();
       let profileQuery = await request.get('/api/events');
