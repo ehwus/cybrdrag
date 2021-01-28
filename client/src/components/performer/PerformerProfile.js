@@ -16,7 +16,7 @@ const PerformerProfile = ({
             <img src={avatar} className='performerAvatar' alt='Avatar'></img>
             <div className='performerName'>{name}</div>
             <h1 className='performerWorth'>
-              {worth.toLocaleString()}
+              {worth}
               <i className='fas fa-dice-d20'></i>
             </h1>
             <div className='performerName'></div>
