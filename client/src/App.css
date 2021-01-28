@@ -231,11 +231,11 @@ nav {
 
 .performerProfile {
   margin: 0 auto;
-  max-width: 600px;
+  max-width: 500px;
 }
 
 .performanceHistory {
-  height: 600px;
+  height: 450px;
   overflow: scroll;
 }
 
