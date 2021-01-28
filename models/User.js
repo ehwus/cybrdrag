@@ -88,9 +88,14 @@ UserSchema.methods.buy = async function (share) {
 
   if (price * quantity >= this.balance) throw new Error('Insufficient funds');
 
-  this.shares.push({ performer, quantity, buyprice: price, performername: performerObject.name,
-  avatar: performerObject.avatar, });
-  this.balance -= price * quantity;
+  let previouslyPurchased = this.shares.find(share => share.performer.toString() ===  performerObject.id)
+  if(previouslyPurchased){
+    previouslyPurchased.quantity += Number(quantity);
+  } else {
+    this.shares.push({ performer, quantity, buyprice: price, performername: performerObject.name,
+    avatar: performerObject.avatar, });
+    this.balance -= price * quantity;
+  }
 
   await this.save();
   await this.addTransaction({
