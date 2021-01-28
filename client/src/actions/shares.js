@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  BUY_SHARE, SHARE_ERROR, SELL_SHARE, SET_ALERT
+  BUY_SHARE, SHARE_ERROR, SELL_SHARE
 } from './types';
 import {setAlert} from "./alert";
 
