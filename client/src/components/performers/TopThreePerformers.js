@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPerformers } from '../../actions/performers';
 import PerformerCard from './PerformerCard';
+import { Link } from 'react-router-dom';
 
 const TopThreePerformers = ({
   getPerformers,
@@ -18,6 +19,9 @@ const TopThreePerformers = ({
       {performers.slice(0, 3).map((performer) => (
         <PerformerCard key={performer._id} performer={performer} />
       ))}
+      <Link to='/performers' className='purpleButton'>
+        Show All
+      </Link>
     </div>
   );
 };
