@@ -1,12 +1,13 @@
-import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 const EventCard = (events) => {
   return (
     <Fragment>
       <div className='performerCard'>
         <h5>
-          {events.events.webdescription}
+          <img src={events.events.avatar} alt='' />
+          {`${events.events.performername} ${events.events.webdescription}`}
         </h5>
       </div>
     </Fragment>
@@ -15,6 +16,6 @@ const EventCard = (events) => {
 
 EventCard.propTypes = {
   events: PropTypes.object.isRequired,
-}
+};
 
-export default EventCard
+export default EventCard;

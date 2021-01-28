@@ -26,7 +26,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   return (
     <nav>
       <h1 className='logo'>
-        <Link to='/dashboard'>
+        <Link to='/'>
           <i className='fas fa-dice-d20'></i>CYBRDRAG
         </Link>
       </h1>
