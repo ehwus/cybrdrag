@@ -13,7 +13,7 @@ const TopThreePerformers = ({
   }, [getPerformers]);
 
   return (
-    <div className='container'>
+    <div className='topThreeQueens'>
       <h1 className='authstate'>Top Three Queens!</h1>
       {performers.slice(0, 3).map((performer) => (
         <PerformerCard key={performer._id} performer={performer} />
