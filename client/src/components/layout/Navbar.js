@@ -29,7 +29,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Link to='/dashboard'>
           <i className='fas fa-dice-d20'></i>CYBRDRAG
         </Link>
-        {/* <form action="/dashboard"><input type='submit' value='CYBRDRAG'></input></form> */}
       </h1>
       {!loading && (
         <Fragment>{isAuthenticated ? authlinks : guestlinks}</Fragment>

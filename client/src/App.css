@@ -12,6 +12,12 @@ body {
   background-image: url('./images/background.png');
 }
 
+textarea:focus,
+input:focus,
+a:focus {
+  outline: none;
+}
+
 .logo {
   font-family: 'Tarrget Chrome Italic';
   font-size: 70px;
