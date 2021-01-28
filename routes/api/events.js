@@ -3,12 +3,12 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 const Event = require('../../models/Event');
 
-// @route   GET api/performers
+// @route   GET api/events
 // @desc    Get all events
 // @access  Public
 router.get('/', async (req, res) => {
   try {
-    const events = await Event.find({});
+    const events = await Event.find({}).sort({ date: -1 });
     res.json(events);
   } catch (err) {
     console.error(err.message);

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
 
 const HistoryCard = (performances) => {
-  console.log(performances)
   return (
     <Fragment>
       <div className='performerCard'>
