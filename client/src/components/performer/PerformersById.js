@@ -23,7 +23,6 @@ const PerformersById = ({
   useEffect(() => {
     getPerformersById(match.params.id);
   }, [getPerformersById, match.params.id]);
-
   return (
     <Fragment>
       {loading ? (
