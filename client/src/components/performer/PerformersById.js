@@ -8,10 +8,12 @@ import PerformersHistoryById from "../performerHistory/PerformerHistory";
 import BuyButton from "../Buttons/BuyButton";
 import SellButton from "../Buttons/SellButton";
 import ShowAllButton from "../Buttons/ShowAllButton";
-import { buyShares } from '../../actions/shares'
+import { buyShares } from '../../actions/shares';
+import { sellShares } from '../../actions/shares';
 
 const PerformersById = ({
   buyShares,
+  sellShares,
   getPerformersById,
   performers: { performers },
   history: { history },
@@ -31,15 +33,25 @@ const PerformersById = ({
           {showActions && (
             <Fragment>
             <button
-              onClick={() => 
-                buyShares(performers._id)}
+              onClick={() => {
+                buyShares(performers._id);
+                window.location.reload(false);
+              }}
               className='purpleButton'
               value='Buy'
               >
             </button>
+            <button
+              onClick={() => {
+                sellShares(performers._id);
+                window.location.reload(false);
+              }}
+              className='purpleButton'
+              value='Sell'
+              >
+            </button>
             </Fragment>
           )}
-          <SellButton/>
         <PerformersHistoryById match={match}/>
       </h1>
       <ShowAllButton/>
@@ -48,6 +60,7 @@ const PerformersById = ({
 };
 
 PerformersById.propTypes = {
+  sellShares: PropTypes.func.isRequired,
   buyShares: PropTypes.func.isRequired,
   getPerformersById: PropTypes.func.isRequired,
   performers: PropTypes.object.isRequired,
@@ -62,6 +75,6 @@ const mapStateToProps = (state) => ({
   performers: state.performers,
 });
 
-export default connect(mapStateToProps, { getPerformersById, buyShares })(
+export default connect(mapStateToProps, { getPerformersById, buyShares, sellShares })(
   PerformersById,
 );
