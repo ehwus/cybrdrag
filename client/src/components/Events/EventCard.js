@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 
 const EventCard = (events) => {
   return (
-    <Fragment>
-      <div className='performerCard'>
-        <h5>
-          <img src={events.events.avatar} alt='' />
-          {`${events.events.performername} ${events.events.webdescription}`}
-        </h5>
-      </div>
-    </Fragment>
+    <div className='eventCard'>
+      <img src={events.events.avatar} alt='' />
+      <span className='eventCardText'>
+        {`${events.events.performername} ${events.events.webdescription}`.toLocaleUpperCase()}
+      </span>
+    </div>
   );
 };
 

@@ -15,7 +15,7 @@ const TopThreePerformers = ({
 
   return (
     <div className='topThreeQueens'>
-      <h1 className='authstate'>Top Three Queens!</h1>
+      <h3 className='dashboardTitle'>Top 3!</h3>
       {performers.slice(0, 3).map((performer) => (
         <PerformerCard key={performer._id} performer={performer} />
       ))}
