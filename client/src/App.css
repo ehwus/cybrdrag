@@ -275,3 +275,31 @@ nav {
 .userCard i {
   margin-left: -40px;
 }
+
+.shareHistory {
+  margin-top: 40px;
+  height: 400px;
+  overflow: scroll;
+}
+
+.shareCard {
+  opacity: 0.9;
+  background: #7700a6;
+  border: 3px solid #fe00fe;
+  border-radius: 34px;
+  width: 40%;
+  height: 110px;
+  min-width: 300px;
+  font-family: monospace;
+  font-size: 21px;
+  color: #defe47;
+  text-align: left;
+  margin: 15px auto;
+  padding: 15px 30px;
+}
+
+.shareCard img {
+  height: 100px;
+  width: auto;
+  float: left;
+}

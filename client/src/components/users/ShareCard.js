@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 
 const ShareCard = ({ share }) => {
   return (
-    <div>
-    <img src={share.avatar} alt='' />
-      {share.performername}
-      {share.quantity}
+    <div className='shareCard'>
+      <img src={share.avatar} className='' alt='' />
+      <div>PERFORMER: {share.performername}</div>
+      <div>QUANTITY: {share.quantity}</div>
     </div>
-  )
-}
+  );
+};
 
-ShareCard.propTypes ={
+ShareCard.propTypes = {
   share: PropTypes.object.isRequired,
 };
 
