@@ -2,7 +2,7 @@ import {
   GET_PERFORMER,
   PERFORMERS_ERROR,
   GET_PERFORMERS,
-} from '../actions/types';
+} from '../../actions/types';
 
 const initialState = {
   performers: [],
@@ -15,11 +15,6 @@ function performerReducer(state = initialState, action) {
 
   switch (type) {
     case GET_PERFORMER:
-      return {
-        ...state,
-        performers: payload,
-        loading: false,
-      };
     case GET_PERFORMERS:
       return {
         ...state,

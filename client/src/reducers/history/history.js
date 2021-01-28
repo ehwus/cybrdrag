@@ -1,4 +1,4 @@
-import { GET_HISTORY, HISTORY_ERROR } from '../actions/types';
+import { GET_HISTORY, HISTORY_ERROR } from '../../actions/types';
 
 const initialState = {
   performances: [],

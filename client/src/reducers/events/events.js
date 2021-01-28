@@ -1,7 +1,7 @@
 import {
   GET_EVENTS,
   EVENTS_ERROR
-} from '../actions/types';
+} from '../../actions/types';
 
 const initialState = {
   events: [],
