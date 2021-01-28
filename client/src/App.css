@@ -171,11 +171,11 @@ nav {
   border: 3px solid #fe00fe;
   border-radius: 34px;
   margin-bottom: 15px;
-  font-family: Menlo-Bold;
+  font-family: monospace;
   font-size: 21px;
   color: #defe47;
   text-align: justify;
-  letter-spacing: 2.5px;
+  font-weight: 100;
 }
 
 .eventCard img {
