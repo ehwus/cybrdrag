@@ -42,6 +42,14 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
       },
+      performername: {
+        type: String,
+        default: null
+      },
+      avatar: {
+        type: String,
+        default: null
+      },
     },
   ],
   default: [],
@@ -62,7 +70,7 @@ const UserSchema = new mongoose.Schema({
       },
       pricepershare: {
         type: Number,
-        required: true,
+        required: true
       },
       date: {
         type: Date,
@@ -80,7 +88,8 @@ UserSchema.methods.buy = async function (share) {
 
   if (price * quantity >= this.balance) throw new Error('Insufficient funds');
 
-  this.shares.push({ performer, quantity, buyprice: price });
+  this.shares.push({ performer, quantity, buyprice: price, performername: performerObject.name,
+  avatar: performerObject.avatar, });
   this.balance -= price * quantity;
 
   await this.save();
@@ -89,6 +98,8 @@ UserSchema.methods.buy = async function (share) {
     performer: performer,
     quantity: quantity,
     pricepershare: price,
+    performername: performerObject.name,
+    avatar: performerObject.avatar,
   });
 };
 
@@ -126,6 +137,8 @@ UserSchema.methods.sell = async function (share) {
     performer: performer,
     quantity: quantity,
     pricepershare: price,
+    performername: performerObject.name,
+    avatar: performerObject.avatar,
   });
 };
 

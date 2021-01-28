@@ -8,6 +8,7 @@ import Performers from '../performers/Performers';
 import PerformersById from '../performer/PerformersById';
 import PrivateRoute from '../routing/PrivateRoute';
 import PerformersHistoryById from "../performerHistory/PerformerHistory";
+import UserProfile from '../users/UserProfile';
 
 const Routes = (props) => {
   return (
@@ -19,6 +20,7 @@ const Routes = (props) => {
         <PrivateRoute exact path='/performers' component={Performers} />
         <PrivateRoute exact path='/performers/:id' component={PerformersById} />
         <PrivateRoute exact path='/performers/history/:id' component={PerformersHistoryById} />
+        <PrivateRoute exact path='/profile' component={UserProfile} />
       </Switch>
     </section>
   );

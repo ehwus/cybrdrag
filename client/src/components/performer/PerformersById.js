@@ -23,7 +23,6 @@ const PerformersById = ({
   useEffect(() => {
     getPerformersById(match.params.id);
   }, [getPerformersById, match.params.id]);
-
   return (
     <div className='container'>
       <h1 className='authstate'>
@@ -35,7 +34,6 @@ const PerformersById = ({
             <button
               onClick={() => {
                 buyShares(performers._id);
-                window.location.reload(false);
               }}
               className='purpleButton'
               value='Buy'

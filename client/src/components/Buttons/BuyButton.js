@@ -14,4 +14,3 @@ const BuyButton = () => {
 }
 
 export default BuyButton;
-
