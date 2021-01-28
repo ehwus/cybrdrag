@@ -10,6 +10,13 @@
 
 body {
   background-image: url('./images/background.png');
+  overflow: hidden;
+}
+
+textarea:focus,
+input:focus,
+a:focus {
+  outline: none;
 }
 
 .logo {
@@ -20,6 +27,15 @@ body {
   margin-top: 5px;
   margin-left: 15px;
   color: #defe47;
+}
+
+.logo a:hover {
+  color: #7700a6;
+}
+
+a {
+  color: #defe47;
+  text-decoration: none;
 }
 
 nav {
@@ -133,4 +149,50 @@ nav {
   height: 100px;
   width: auto;
   float: left;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboardTitle {
+  font-family: 'Tarrget Condensed';
+  font-size: 40px;
+  color: #defe47;
+}
+
+.eventCard {
+  width: 500px;
+  padding: 20px;
+  height: 105px;
+  opacity: 0.9;
+  background: #7700a6;
+  border: 3px solid #fe00fe;
+  border-radius: 34px;
+  margin-bottom: 15px;
+  font-family: monospace;
+  font-size: 21px;
+  color: #defe47;
+  text-align: justify;
+  font-weight: 100;
+}
+
+.eventCard img {
+  height: 100px;
+  width: auto;
+  float: left;
+  margin-left: -20px;
+}
+
+.news {
+  height: 100%;
+  overflow: scroll;
+  max-height: 600px;
+}
+
+.countdown {
+  font-family: monospace;
+  font-size: 21px;
+  color: #defe47;
 }

@@ -1,25 +1,20 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {getEvents} from "../../actions/events";
+import { connect } from 'react-redux';
+import { getEvents } from '../../actions/events';
 import EventCard from './EventCard';
-import PerformerCard from '../performers/PerformerCard'
 
-const News = ({getEvents, events: {events, loading} }) => {
+const News = ({ getEvents, events: { events, loading } }) => {
   useEffect(() => {
     getEvents();
   }, [getEvents]);
 
   return (
-    <div className='container'>
-      <h1 className='authstate'>News
-      {events.map(event => (
-        <div>
-        <EventCard key={event._id} events={event}/>
-        {/* <PerformerCard key={event.event.performer}/> */}
-        </div>
+    <div className='news'>
+      <h1 className='dashboardTitle'>News</h1>
+      {events.map((event) => (
+        <EventCard key={event._id} events={event} />
       ))}
-      </h1>
     </div>
   );
 };
@@ -27,10 +22,10 @@ const News = ({getEvents, events: {events, loading} }) => {
 News.propTypes = {
   getEvents: PropTypes.func.isRequired,
   events: PropTypes.object.isRequired,
-}
+};
 
-const mapStateToProps = state => ({
-  events: state.events
-})
+const mapStateToProps = (state) => ({
+  events: state.events,
+});
 
-export default connect(mapStateToProps, {getEvents})(News);
+export default connect(mapStateToProps, { getEvents })(News);

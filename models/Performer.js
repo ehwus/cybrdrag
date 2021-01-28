@@ -50,6 +50,8 @@ PerformerSchema.methods.perform = async function () {
       performer: this.id,
       name: isEventTriggered.name,
       webdescription: isEventTriggered.webdescription,
+      performername: this.name,
+      avatar: this.avatar,
     });
 
     await event.save();

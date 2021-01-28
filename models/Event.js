@@ -19,6 +19,14 @@ const EventSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  performername: {
+    type: String,
+    required: true,
+  },
+  avatar: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = Event = mongoose.model('event', EventSchema);
