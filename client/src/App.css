@@ -190,3 +190,9 @@ nav {
   overflow: scroll;
   max-height: 600px;
 }
+
+.countdown {
+  font-family: monospace;
+  font-size: 21px;
+  color: #defe47;
+}
