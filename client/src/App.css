@@ -228,3 +228,8 @@ nav {
   text-align: justify;
   font-family: 'Inconsolata', monospace;
 }
+
+.performerProfile {
+  margin: 0 auto;
+  max-width: 600px;
+}
