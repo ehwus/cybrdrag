@@ -20,7 +20,7 @@ const UserProfile = ({
           (  <div>
               <UserCard user={ auth.user } />
               { auth.user.shares.map(share =>
-                <ShareCard share={ share } />
+                <ShareCard key={ share._id } share={ share } />
               ) }
             </div>)
         }
