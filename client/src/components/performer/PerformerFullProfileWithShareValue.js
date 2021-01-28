@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const PerformerProfile = ({
+const PerformerFullProfileWithShareValue = ({
   performer: { _id, name, worth, avatar },
   loading,
 }) => {
@@ -27,9 +27,9 @@ const PerformerProfile = ({
   );
 };
 
-PerformerProfile.propTypes = {
+PerformerFullProfileWithShareValue.propTypes = {
   performer: PropTypes.object.isRequired,
   history: PropTypes.array.isRequired,
 };
 
-export default PerformerProfile;
+export default PerformerFullProfileWithShareValue;

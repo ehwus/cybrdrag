@@ -14,11 +14,13 @@ const PerformersHistoryById = ({
   }, [getHistoryById, match.params.id]);
 
   return (
-    <Fragment className='performanceHistory'>
+    <Fragment>
       <h1 className='authstate'>Performance History</h1>
-      {performances.map((performance) => (
-        <HistoryCard key={performance._id} performances={performance} />
-      ))}
+      <div className='performanceHistory'>
+        {performances.map((performance) => (
+          <HistoryCard key={performance._id} performances={performance} />
+        ))}
+      </div>
     </Fragment>
   );
 };
