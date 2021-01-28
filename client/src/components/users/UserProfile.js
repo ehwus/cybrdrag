@@ -5,28 +5,29 @@ import UserCard from './UserCard';
 import { loadUser } from '../../actions/auth';
 import ShareCard from './ShareCard';
 
-
-const UserProfile = ({
-  loadUser,
-  auth,
-}) => {
+const UserProfile = ({ loadUser, auth }) => {
   useEffect(() => {
     loadUser();
-  },[loadUser])
+  }, [loadUser]);
 
-    return (
-      <Fragment>
-        {auth.loading ? (<h1> loading </h1>) :
-          (  <div>
-              <UserCard user={ auth.user } />
-              { auth.user.shares.map(share =>
-                <ShareCard share={ share } />
-              ) }
-            </div>)
-        }
-      </Fragment>
-    )
-}
+  return (
+    <Fragment>
+      {auth.loading ? (
+        <h1> loading </h1>
+      ) : (
+        <div>
+          <UserCard user={auth.user} />
+          <h1 className='dashboardTitle'>SHARES</h1>
+          <div class='shareHistory'>
+            {auth.user.shares.map((share) => (
+              <ShareCard share={share} />
+            ))}
+          </div>
+        </div>
+      )}
+    </Fragment>
+  );
+};
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
@@ -34,9 +35,7 @@ const mapStateToProps = (state) => ({
 
 UserProfile.propTypes = {
   auth: PropTypes.object.isRequired,
-  loadUser: PropTypes.func.isRequired
-}
+  loadUser: PropTypes.func.isRequired,
+};
 
-export default connect(mapStateToProps, { loadUser })(
-  UserProfile
-)
+export default connect(mapStateToProps, { loadUser })(UserProfile);
