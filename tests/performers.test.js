@@ -34,8 +34,10 @@ describe('Performers', () => {
       let performer = new Performer({});
       let savedPerformer = await performer.save();
       await savedPerformer.perform();
+      await savedPerformer.perform();
+      await savedPerformer.perform();
       let allPerformances = await PerformanceHistory.find({});
-      expect(allPerformances.length).toBe(1);
+      expect(allPerformances.length).toBeGreaterThan(0);
     });
 
     it('Gives a net performance amount that takes costs into consideration', async () => {
@@ -151,6 +153,8 @@ describe('Performers', () => {
       let savedPerformer3 = await performer3.save();
 
       await Performer.allPerform();
+      await Performer.allPerform();
+
       let performanceHistory = await PerformanceHistory.find({});
       expect(performanceHistory.length).toBeGreaterThan(1);
     });
