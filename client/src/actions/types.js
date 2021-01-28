@@ -15,3 +15,6 @@ export const GET_HISTORY = 'GET_HISTORY';
 export const HISTORY_ERROR = 'HISTORY_ERROR';
 export const GET_EVENTS = 'GET_EVENTS';
 export const EVENTS_ERROR = 'EVENTS_ERROR';
+export const BUY_SHARE = 'BUY_SHARE';
+export const SELL_SHARE = 'SELL_SHARE';
+export const SHARE_ERROR = 'SHARE_ERROR';
