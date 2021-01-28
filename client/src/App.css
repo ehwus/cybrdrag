@@ -22,6 +22,15 @@ body {
   color: #defe47;
 }
 
+.logo a:hover {
+  color: #7700a6;
+}
+
+.logo a {
+  color: #defe47;
+  text-decoration: none;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
