@@ -11,6 +11,7 @@ import ShowAllButton from "../Buttons/ShowAllButton";
 import {buyShares} from '../../actions/shares';
 import {sellShares} from '../../actions/shares';
 
+
 const PerformersById = ({
                           buyShares,
                           sellShares,
