@@ -8,6 +8,8 @@
   src: url('./fonts/tarrgetcond.ttf') format('truetype'); /* Safari, Android, iOS */
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap');
+
 body {
   background-image: url('./images/background.png');
   overflow: hidden;
@@ -195,4 +197,58 @@ nav {
   font-family: monospace;
   font-size: 21px;
   color: #defe47;
+}
+
+.allPerformers {
+  height: 600px;
+  overflow: auto;
+}
+
+.allPerformers .performerCard {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.landingBox {
+  opacity: 0.9;
+  background: #7700a6;
+  border: 3px solid #fe00fe;
+  border-radius: 34px;
+  width: 40%;
+  min-width: 300px;
+  font-family: monospace;
+  font-size: 21px;
+  color: #defe47;
+  text-align: center;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.landingDescription {
+  text-align: justify;
+  font-family: 'Inconsolata', monospace;
+}
+
+.performerProfile {
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.performanceHistory {
+  height: 450px;
+  overflow: scroll;
+}
+
+.historyCard {
+  opacity: 0.9;
+  background: #7700a6;
+  border: 3px solid #fe00fe;
+  border-radius: 34px;
+  width: 40%;
+  min-width: 300px;
+  font-family: monospace;
+  font-size: 21px;
+  color: #defe47;
+  text-align: center;
+  margin: 15px auto;
 }

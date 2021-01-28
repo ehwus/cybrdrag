@@ -4,11 +4,13 @@ import auth from './auth';
 import performers from './performers';
 import history from './history';
 import events from './events';
+import shares from './shares';
 
 export default combineReducers({
   alert,
   auth,
   performers,
   history,
-  events
+  events,
+  shares
 });

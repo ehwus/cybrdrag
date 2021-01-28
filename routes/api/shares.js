@@ -18,7 +18,7 @@ router.post('/:id/:amount/buy', auth, async (req, res) => {
     res.status(200).send('Share purchased successfully');
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(400).json({ errors: [{ msg: err.message }] });
   }
 });
 
@@ -35,7 +35,7 @@ router.post('/:id/:amount/sell', auth, async (req, res) => {
     res.status(200).send('Share purchased successfully');
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(400).json({ errors: [{ msg: err.message }] });
   }
 });
 

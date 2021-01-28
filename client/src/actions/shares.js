@@ -1,34 +1,48 @@
 import axios from 'axios';
 import {
-GET_PERFORMER,
+  BUY_SHARE, SHARE_ERROR, SELL_SHARE
 } from './types';
+import {setAlert} from "./alert";
 
 export const buyShares = (performerID) => async (
   dispatch
 ) => {
-  console.log('hi')
   try {
-    const res = await axios.post(`/api/shares/${performerID}/1/buy`)
+    await axios.post(`/api/shares/${performerID}/1/buy`)
     dispatch({
-      type: GET_PERFORMER,
-      payload: res.data
+      type: BUY_SHARE,
     });
   } catch (err) {
-    console.error(err.message);
+    const errors = err.response.data.errors;
+    console.log(err)
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+    dispatch({
+      type: SHARE_ERROR,
+      payload: {msg: err.response.statusText, status: err.response.status},
+    });
   }
 }
 
 export const sellShares = (performerID) => async (
   dispatch
 ) => {
-  console.log('hi')
   try {
-    const res = await axios.post(`/api/shares/${performerID}/1/sell`)
+    await axios.post(`/api/shares/${performerID}/1/sell`)
     dispatch({
-      type: GET_PERFORMER,
-      payload: res.data
+      type: SELL_SHARE,
     });
   } catch (err) {
-    console.error(err.message);
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+    dispatch({
+      type: SHARE_ERROR,
+      payload: {msg: err.response.statusText, status: err.response.status},
+    });
   }
 }
