@@ -255,22 +255,13 @@ nav {
 }
 
 .userCard {
-  opacity: 0.9;
-  background: #7700a6;
-  border: 3px solid #fe00fe;
-  border-radius: 34px;
   width: 20%;
   min-width: 300px;
   font-family: monospace;
   font-size: 21px;
   color: #defe47;
-  text-align: center;
   margin: 15px auto;
   padding: 15px 30px;
-}
-
-.userBalance {
-  margin: 0 auto;
 }
 
 .userCard i {
@@ -280,7 +271,7 @@ nav {
 .shareHistory,
 .transactionHistory {
   margin-top: 40px;
-  height: 350px;
+  height: 500px;
   overflow: scroll;
 }
 
@@ -292,7 +283,7 @@ nav {
   border-radius: 34px;
   width: 40%;
   height: 110px;
-  min-width: 300px;
+  min-width: 350px;
   font-family: monospace;
   font-size: 21px;
   color: #defe47;

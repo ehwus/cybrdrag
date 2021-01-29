@@ -16,17 +16,16 @@ const UserProfile = ({ loadUser, auth }) => {
         <h1> loading </h1>
       ) : (
         <div>
-          <UserCard user={auth.user} />
-
           <div className='sharesAndTransactions'>
             <div>
-              <h1 className='dashboardTitle'>SHARES</h1>
+              <h1 className='dashboardTitle'>PORTFOLIO</h1>
               <div className='shareHistory'>
                 {auth.user.shares.map((share) => (
                   <ShareCard share={share} key={share.id} />
                 ))}
               </div>
             </div>
+            <UserCard user={auth.user} />
             <div className='transactionHistory'>
               <div>
                 <h1 className='dashboardTitle'>TRANSACTIONS</h1>
