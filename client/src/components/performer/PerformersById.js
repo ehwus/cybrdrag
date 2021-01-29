@@ -67,6 +67,8 @@ const PerformersById = ({
                   type='number'
                   min='1'
                   max='100'
+                  placeholder='1'
+                  class='shareAmount'
                   onChange={(e) => onChange(e)}
                 />
               </div>
