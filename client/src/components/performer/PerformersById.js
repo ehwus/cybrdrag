@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPerformersById } from '../../actions/performers';
@@ -23,6 +23,10 @@ const PerformersById = ({
   useEffect(() => {
     getPerformersById(match.params.id);
   }, [getPerformersById, match.params.id]);
+
+  const [shareAmount, setShareAmount] = useState(0);
+  const onChange = (e) => setShareAmount(e.value);
+
   return (
     <Fragment>
       {loading ? (
@@ -42,7 +46,7 @@ const PerformersById = ({
               <div className='buyAndSellButtons'>
                 <button
                   onClick={() => {
-                    buyShares(performers._id);
+                    buyShares(performers._id, shareAmount);
                   }}
                   className='purpleButton'
                 >
@@ -56,6 +60,11 @@ const PerformersById = ({
                 >
                   Sell
                 </button>
+                <input
+                  type='number'
+                  placeholder='1'
+                  onChange={(e) => onChange(e)}
+                />
               </div>
             </Fragment>
             <PerformersHistoryById match={match} />
