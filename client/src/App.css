@@ -153,7 +153,8 @@ nav {
   float: left;
 }
 
-.dashboard {
+.dashboard,
+.sharesAndTransactions {
   display: flex;
   justify-content: space-between;
 }
@@ -235,7 +236,7 @@ nav {
 }
 
 .performanceHistory {
-  height: 450px;
+  height: 400px;
   overflow: scroll;
 }
 
@@ -254,42 +255,35 @@ nav {
 }
 
 .userCard {
-  opacity: 0.9;
-  background: #7700a6;
-  border: 3px solid #fe00fe;
-  border-radius: 34px;
   width: 20%;
   min-width: 300px;
   font-family: monospace;
   font-size: 21px;
   color: #defe47;
-  text-align: center;
   margin: 15px auto;
   padding: 15px 30px;
-}
-
-.userBalance {
-  margin: 0 auto;
 }
 
 .userCard i {
   margin-left: -40px;
 }
 
-.shareHistory {
+.shareHistory,
+.transactionHistory {
   margin-top: 40px;
-  height: 400px;
+  height: 500px;
   overflow: scroll;
 }
 
-.shareCard {
+.shareCard,
+.transactionCard {
   opacity: 0.9;
   background: #7700a6;
   border: 3px solid #fe00fe;
   border-radius: 34px;
   width: 40%;
   height: 110px;
-  min-width: 300px;
+  min-width: 350px;
   font-family: monospace;
   font-size: 21px;
   color: #defe47;
@@ -302,4 +296,24 @@ nav {
   height: 100px;
   width: auto;
   float: left;
+}
+
+.shareAmount {
+  font-family: 'Tarrget Condensed';
+  font-size: 20px;
+  background: #defe47;
+  border-radius: 20.5px;
+  border: none;
+  width: 50px;
+  height: 50px;
+  outline: none;
+  padding-left: 10px;
+}
+
+.performanceTime {
+  margin-top: 15px;
+}
+
+.performanceEarnings {
+  margin-bottom: 15px;
 }

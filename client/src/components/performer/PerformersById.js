@@ -1,13 +1,9 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPerformersById } from '../../actions/performers';
 import PerformerProfile from './PerformerProfile';
-import { getHistoryById } from '../../actions/performers';
 import PerformersHistoryById from '../performerHistory/PerformerHistory';
-import BuyButton from '../Buttons/BuyButton';
-import SellButton from '../Buttons/SellButton';
-import ShowAllButton from '../Buttons/ShowAllButton';
 import { buyShares } from '../../actions/shares';
 import { sellShares } from '../../actions/shares';
 
@@ -23,6 +19,12 @@ const PerformersById = ({
   useEffect(() => {
     getPerformersById(match.params.id);
   }, [getPerformersById, match.params.id]);
+
+  const [shareAmount, setShareAmount] = useState(1);
+  const onChange = (e) => {
+    setShareAmount(e.target.value);
+  };
+
   return (
     <Fragment>
       {loading ? (
@@ -42,7 +44,7 @@ const PerformersById = ({
               <div className='buyAndSellButtons'>
                 <button
                   onClick={() => {
-                    buyShares(performers._id);
+                    buyShares(performers._id, shareAmount);
                   }}
                   className='purpleButton'
                 >
@@ -50,12 +52,21 @@ const PerformersById = ({
                 </button>
                 <button
                   onClick={() => {
-                    sellShares(performers._id);
+                    console.log(shareAmount);
+                    sellShares(performers._id, shareAmount);
                   }}
                   className='purpleButton'
                 >
                   Sell
                 </button>
+                <input
+                  type='number'
+                  min='1'
+                  max='100'
+                  placeholder='1'
+                  class='shareAmount'
+                  onChange={(e) => onChange(e)}
+                />
               </div>
             </Fragment>
             <PerformersHistoryById match={match} />
