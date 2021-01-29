@@ -24,8 +24,10 @@ const PerformersById = ({
     getPerformersById(match.params.id);
   }, [getPerformersById, match.params.id]);
 
-  const [shareAmount, setShareAmount] = useState(0);
-  const onChange = (e) => setShareAmount(e.value);
+  const [shareAmount, setShareAmount] = useState(1);
+  const onChange = (e) => {
+    setShareAmount(e.target.value);
+  };
 
   return (
     <Fragment>
@@ -54,7 +56,8 @@ const PerformersById = ({
                 </button>
                 <button
                   onClick={() => {
-                    sellShares(performers._id);
+                    console.log(shareAmount);
+                    sellShares(performers._id, shareAmount);
                   }}
                   className='purpleButton'
                 >
@@ -62,7 +65,8 @@ const PerformersById = ({
                 </button>
                 <input
                   type='number'
-                  placeholder='1'
+                  min='1'
+                  max='100'
                   onChange={(e) => onChange(e)}
                 />
               </div>
