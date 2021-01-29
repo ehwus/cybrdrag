@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPerformersById } from '../../actions/performers';
 import PerformerProfile from './PerformerProfile';
-import { getHistoryById } from '../../actions/performers';
 import PerformersHistoryById from '../performerHistory/PerformerHistory';
-import BuyButton from '../Buttons/BuyButton';
-import SellButton from '../Buttons/SellButton';
-import ShowAllButton from '../Buttons/ShowAllButton';
 import { buyShares } from '../../actions/shares';
 import { sellShares } from '../../actions/shares';
 
