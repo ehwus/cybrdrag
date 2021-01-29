@@ -235,7 +235,7 @@ nav {
 }
 
 .performanceHistory {
-  height: 450px;
+  height: 400px;
   overflow: scroll;
 }
 
@@ -278,7 +278,7 @@ nav {
 
 .shareHistory {
   margin-top: 40px;
-  height: 400px;
+  height: 350px;
   overflow: scroll;
 }
 
@@ -318,4 +318,8 @@ nav {
 
 .performanceTime {
   margin-top: 15px;
+}
+
+.performanceEarnings {
+  margin-bottom: 15px;
 }

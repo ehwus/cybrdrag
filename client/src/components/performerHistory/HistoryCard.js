@@ -12,10 +12,10 @@ const HistoryCard = (performances) => {
         Performance at &nbsp;
         <Moment date={date} format='HH:MM on DD/MM/YY' />
       </div>
-      <h5>
+      <div className='performanceEarnings'>
         Earned: {performances.performances.netearned}
         <i className='fas fa-dice-d20'></i>
-      </h5>
+      </div>
     </div>
   );
 };
