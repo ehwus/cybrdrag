@@ -153,7 +153,8 @@ nav {
   float: left;
 }
 
-.dashboard {
+.dashboard,
+.sharesAndTransactions {
   display: flex;
   justify-content: space-between;
 }
@@ -276,13 +277,15 @@ nav {
   margin-left: -40px;
 }
 
-.shareHistory {
+.shareHistory,
+.transactionHistory {
   margin-top: 40px;
   height: 350px;
   overflow: scroll;
 }
 
-.shareCard {
+.shareCard,
+.transactionCard {
   opacity: 0.9;
   background: #7700a6;
   border: 3px solid #fe00fe;
