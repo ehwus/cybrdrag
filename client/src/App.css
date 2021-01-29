@@ -315,3 +315,7 @@ nav {
   outline: none;
   padding-left: 10px;
 }
+
+.performanceTime {
+  margin-top: 15px;
+}
