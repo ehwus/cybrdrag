@@ -91,10 +91,11 @@ UserSchema.methods.buy = async function (share) {
   let previouslyPurchased = this.shares.find(share => share.performer.toString() ===  performerObject.id)
   if(previouslyPurchased){
     previouslyPurchased.quantity += Number(quantity);
+    this.balance -= price * Number(quantity);
   } else {
     this.shares.push({ performer, quantity, buyprice: price, performername: performerObject.name,
     avatar: performerObject.avatar, });
-    this.balance -= price * quantity;
+    this.balance -= price * Number(quantity);
   }
 
   await this.save();
@@ -111,7 +112,7 @@ UserSchema.methods.buy = async function (share) {
 UserSchema.methods.sell = async function (share) {
   const { performer, quantity } = share;
   let performerObject = await Performer.findById(performer);
-  if (performerObject.timeout != 0) {
+  if (performerObject.timeout !== 0) {
     throw new Error("You can't sell a performer whilst they cannot stream!");
   }
   let price = Math.floor(performerObject.worth * 0.01);
@@ -129,7 +130,7 @@ UserSchema.methods.sell = async function (share) {
   if (newBalance < 0)
     throw new Error("You can't sell more shares than you own");
 
-  matchedShare.quantity -= quantity;
+  matchedShare.quantity -= Number(quantity);
   this.balance += quantity * price;
 
   if (matchedShare.quantity === 0) {
