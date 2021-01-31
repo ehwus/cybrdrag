@@ -52,6 +52,7 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
+
 UserProfile.propTypes = {
   auth: PropTypes.object.isRequired,
   loadUser: PropTypes.func.isRequired,

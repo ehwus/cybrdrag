@@ -10,14 +10,17 @@ On Wednesday we worked on our API routes for the user authentication system we c
 We can sign up as a user and the API will return us a valid json token. If catches any errors:
 ![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/59441094/105375343-8cfbce00-5c00-11eb-86a4-cdaaa9acea60.gif)
 
-We can sign in as a user and return a json token. It will give an error if any login details are incorrect.
-![2021-01-21 15 41 41](https://user-images.githubusercontent.com/59441094/105374824-02b36a00-5c00-11eb-9452-4bfc4f759a81.gif)
+[comment]: <> (We can sign in as a user and return a json token. It will give an error if any login details are incorrect.)
 
-We can give a wrong token and the API will return an error. We can give the correct token and it will return the user object:
-![2021-01-21 15 43 58](https://user-images.githubusercontent.com/59441094/105374603-cda71780-5bff-11eb-9f0a-8b8056a0c256.gif)
-### Day 4
+[comment]: <> (![2021-01-21 15 41 41]&#40;https://user-images.githubusercontent.com/59441094/105374824-02b36a00-5c00-11eb-9452-4bfc4f759a81.gif&#41;)
 
-### Day 5
+[comment]: <> (We can give a wrong token and the API will return an error. We can give the correct token and it will return the user object:)
+
+[comment]: <> (![2021-01-21 15 43 58]&#40;https://user-images.githubusercontent.com/59441094/105374603-cda71780-5bff-11eb-9f0a-8b8056a0c256.gif&#41;)
+
+[comment]: <> (### Day 4)
+
+[comment]: <> (### Day 5)
 
 ### Day 6
 
