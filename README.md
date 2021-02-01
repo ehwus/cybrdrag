@@ -1,6 +1,6 @@
-<img src="./screenshots/LogoBlack.png"  align="center"></img>
-
 <p  align="center">
+<img src="./screenshots/LogoBlack.png" alt="Logo"></img>
+<br />
 
 <img  alt="Version"  src="https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge&cacheSeconds=2592000"  />
 
