@@ -1,6 +1,7 @@
 <p  align="center">
 <img src="./screenshots/LogoBlack.png" alt="Logo"></img>
 <br />
+<br />
 
 <img  alt="Version"  src="https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge&cacheSeconds=2592000"  />
 
@@ -39,6 +40,9 @@
 <img  alt="npm"  src="https://img.shields.io/npm/v/npm?style=for-the-badge">
 
 </a>
+
+<br />
+<img src="./screenshots/platform.png" alt="screenshot of the platform in use">
 
 </p>
 
