@@ -70,9 +70,9 @@ Requirements: NodeJS, MongoDB, Nodemon.
 
 ```sh
 
-npm run server  # run the Node server
-npm run client  # run the React client
-npm run dev     # run both in parallel using concurrently
+~ npm run server  # run the Node server
+~ npm run client  # run the React client
+~ npm run dev     # run both in parallel using concurrently
 ```
 
 ## Testing
@@ -81,7 +81,7 @@ We used Jest for tests on both the front and back end. We have high back end tes
 
 ```sh
 
-npm test
+~ npm test
 
 ```
 
