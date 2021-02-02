@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/ehwus/cybrdrag#readme",
   "devDependencies": {
+    "config": "^3.3.3",
     "eslint": "^7.18.0",
     "mongodb-memory-server": "^6.9.3",
     "supertest": "^6.1.1"

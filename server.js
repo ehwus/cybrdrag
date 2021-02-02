@@ -1,14 +1,16 @@
 const express = require('express');
-const app = express();
-const path = require('path');
 const connectDB = require('./config/db');
 const createPerformers = require('./scripts/createPerformers.js');
 const startCron = require('./scripts/startCron');
+const path = require('path');
 
-app.use(express.json({extended: false}));
+const app = express();
+
 connectDB();
 createPerformers();
 startCron();
+
+app.use(express.json());
 
 // Define routes
 app.use('/api/users', require('./routes/api/users'));
@@ -19,7 +21,7 @@ app.use('/api/shares', require('./routes/api/shares'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/client'));
+  app.use(express.static('client/build'));
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
@@ -28,8 +30,6 @@ if (process.env.NODE_ENV === 'production') {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`App is listening on port ${PORT}`);
-});
-
-module.exports = app;
+app.listen(PORT, () =>
+  console.log(`App is listening on port ${PORT}`)
+);
