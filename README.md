@@ -48,6 +48,8 @@
 
 Set in a dystopian cyberpunk future, CYBRDRAG is a browser based fantasy sports style web game. Users invest in the careers of drag performers who are forced to stream every hour by a tech megacorp.
 
+You can play CYBRDRAG <a href="http://cybrdrag.herokuapp.com">here.</a>
+
 Users can invest in randomly generated performers to build a portfolio of shares. The value of performers go up and down over time, according to random events that happen during performances. We want to create the possibility for a shared experience, much like fantasy football, but with a cyberpunk inspired drag theming.
 
 We built the game using a MERN stack - MongoDB for the database, Express for the routing, React for the front end, and Node to handle the business logic. This gave us a separate front end client for designing the user interface, and an independent server for the business logic. Seperating into teams with distinctive responsibilities was much easier because of this. Having JavaScript as our sole programming language was also very helpful, especially as this was a new stack for us.

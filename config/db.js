@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
-
-// Connect to local if not production
-const db = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/cybrdragtest';
+const config = require('config');
+const db = config.get('mongoURI')
 
 const connectDB = async () => {
   try {

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../utils/api';
 import {
   GET_PERFORMER,
   GET_PERFORMERS,
@@ -13,7 +13,7 @@ export const getPerformers = () => async (dispatch) => {
   dispatch({ type: CLEAR_PERFORMER });
 
   try {
-    const res = await axios.get('/api/performers');
+    const res = await api.get('/performers');
 
     dispatch({
       type: GET_PERFORMERS,
@@ -30,7 +30,7 @@ export const getPerformers = () => async (dispatch) => {
 // Get profile by ID
 export const getPerformersById = (performersID) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/performers/${performersID}`);
+    const res = await api.get(`/performers/${performersID}`);
 
     dispatch({
       type: GET_PERFORMER,
@@ -47,7 +47,7 @@ export const getPerformersById = (performersID) => async (dispatch) => {
 // Get history by ID
 export const getHistoryById = (performersID) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/performers/history/${performersID}`);
+    const res = await api.get(`/performers/history/${performersID}`);
 
     dispatch({
       type: GET_HISTORY,

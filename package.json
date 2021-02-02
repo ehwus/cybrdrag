@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "server": "nodemon app",
+    "server": "nodemon server",
     "start": "node app",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -22,14 +23,15 @@
   },
   "homepage": "https://github.com/ehwus/cybrdrag#readme",
   "devDependencies": {
+    "config": "^3.3.3",
     "eslint": "^7.18.0",
-    "jest": "^26.6.3",
     "mongodb-memory-server": "^6.9.3",
     "supertest": "^6.1.1"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "concurrently": "^5.3.0",
+    "config": "^3.3.3",
     "cron": "^1.8.2",
     "csv": "^5.3.2",
     "dotenv": "^8.2.0",

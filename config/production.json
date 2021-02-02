@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://alexlm:4cT62EdOf823D2Wd@cybrdrag.fq8qs.mongodb.net/cybrdrag?retryWrites=true&w=majority",
+  "JWT_SECRET": "xX__aLeXaNdErLeEsOn-MiLlSsSsSsSs420__Xx"
+}
