@@ -1,14 +1,7 @@
 const express = require('express');
-const connectDB = require('./config/db');
-const createPerformers = require('./scripts/createPerformers.js');
-const startCron = require('./scripts/startCron');
 const path = require('path');
 
 const app = express();
-
-connectDB();
-createPerformers();
-startCron();
 
 app.use(express.json());
 
@@ -28,8 +21,4 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () =>
-  console.log(`App is listening on port ${PORT}`)
-);
+module.exports = app;
