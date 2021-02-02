@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../utils/api';
 import {
   GET_EVENTS,
   EVENTS_ERROR
@@ -10,7 +10,7 @@ export const getEvents = () => async (dispatch) => {
   // dispatch({ type: GET_EVENTS });
 
   try {
-    const res = await axios.get('/api/events');
+    const res = await api.get('/events');
 
     dispatch({
       type: GET_EVENTS,

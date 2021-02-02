@@ -1,10 +1,10 @@
-import axios from 'axios';
+import api from '../utils/api';
 import { BUY_SHARE, SHARE_ERROR, SELL_SHARE } from './types';
 import { setAlert } from './alert';
 
 export const buyShares = (performerID, amount) => async (dispatch) => {
   try {
-    await axios.post(`/api/shares/${performerID}/${amount}/buy`);
+    await api.post(`/shares/${performerID}/${amount}/buy`);
     dispatch({
       type: BUY_SHARE,
     });
@@ -29,7 +29,7 @@ export const buyShares = (performerID, amount) => async (dispatch) => {
 
 export const sellShares = (performerID, amount) => async (dispatch) => {
   try {
-    await axios.post(`/api/shares/${performerID}/${amount}/sell`);
+    await api.post(`/shares/${performerID}/${amount}/sell`);
     dispatch({
       type: SELL_SHARE,
     });
